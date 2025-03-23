@@ -30,32 +30,31 @@ public:
       }
 };
 
-class JSN_UART
+class JSN_GPIO2
 {
 private:
-    HardwareSerial &uart;
-    uint8_t rxpin;
-    uint8_t txpin;
+    uint8_t trigpin2;
+    uint8_t echopin2;
 
 public:
-    JSN_UART(HardwareSerial &uartPort, uint8_t rx, uint8_t tx) : uart(uartPort) , rxpin(rx), txpin(tx) {}
-
-    void begin(uint32_t baud = 9600) {
-        uart.begin(baud, SERIAL_8N1, rxpin, txpin);
+    JSN_GPIO2(uint8_t trig2, uint8_t echo2) : trigpin2(trig2), echopin2(echo2) {}
+    void begin() {
+        pinMode(trigpin2, OUTPUT);
+        pinMode(echopin2, INPUT);
     }
 
-    float getdistance(){
-        if (uart.available() >= 4) {
-            uint8_t buffer[4];
-            uart.readBytes(buffer, 4);
-    
-            if (buffer[0] == 0xFF) {
-              uint16_t distance_mm = (buffer[1] << 8) + buffer[2];
-              return distance_mm / 10.0;
-            }
-          }
-          return -1.0; // Invalid or no data
+    float getDistance(){
+        digitalWrite(trigpin2, LOW);
+        delayMicroseconds(2);
+        digitalWrite(trigpin2, HIGH);
+        delayMicroseconds(10);
+        digitalWrite(trigpin2, LOW);
+  
+        long duration = pulseIn(echopin2, HIGH, 30000); // 30ms timeout
+        if(duration == 0) {
+          return -1.0; // Timeout or no detection
         }
+  
+        return (duration / 2.0) / 29.1;
+      }
 };
-
-

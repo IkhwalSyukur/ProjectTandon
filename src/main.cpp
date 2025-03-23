@@ -1,18 +1,32 @@
-#include <Arduino.h>
+#include <WaterLevel.h>
 
-// put function declarations here:
-int myFunction(int, int);
+JSN_GPIO jsn(21,19); // Trig, Echo
+JSN_GPIO2 jsn2(18,5); // Trig, Echo
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+  jsn.begin();
+  jsn2.begin();
+
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  float jsnData = jsn.getDistance();
+  float jsnData2 = jsn2.getDistance();
+
+  if (jsnData >= 0) {
+    Serial.printf("GPIO Sensor Distance 1: %.2f cm\n", jsnData);
+  } else {
+    Serial.println("GPIO Sensor: No object detected");
+  }
+
+  if (jsnData2 >= 0) {
+    Serial.printf("GPIO Sensor Distance 2: %.2f cm\n", jsnData2);
+  } else {
+    Serial.println("GPIO Sensor: No object detected");
+  }
+
+
+  delay(500);
 }
