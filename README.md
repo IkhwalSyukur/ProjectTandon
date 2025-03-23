@@ -1,3 +1,6 @@
+## Firmware Architecture ##
+![alt text](Firmware-arch.png)
+
 ## Firmware Design ##
 
 ```C++
