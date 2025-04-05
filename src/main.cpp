@@ -1,20 +1,34 @@
 #include <Arduino.h>
+#include <memory>
+#include "esp_log.h"
 
+#include <driver/WifiAdapter_ESP.h>
 #include <WaterTorrentManager.h>
-#include <driver/WaterLevel_JSN04T.h>
 
-WaterLevel_JSN04T waterLevel(12, 14);
+std::unique_ptr<WifiAdapterESP> wifiAdapter = std::make_unique<WifiAdapterESP>();
+WaterTorrentManager waterTorrentManager(std::move(wifiAdapter));
 
-WaterTorrentManager waterTorrent(waterLevel);
+static const char *TAG = "main";
 
 void setup()
 {
   Serial.begin(115200);
-  waterTorrent.begin();
+  vTaskDelay(1000); // Give time for the serial monitor to open
+
+  ESP_LOGD(TAG, "Initializing WaterTorrentManager...");
+  if (!waterTorrentManager.begin())
+  {
+    ESP_LOGE(TAG, "Failed to initialize WaterTorrentManager.");
+    return;
+  }
+
+  // Add any additional setup code here
+  ESP_LOGI(TAG, "WaterTorrentManager setup complete.");
 }
 
 void loop()
 {
-  waterTorrent.readingWaterLevel();
-  delay(1000);
+  vTaskDelete(NULL); // Delete the loop task to save power
+                     // The main logic of your program will be handled in the setup function or in other tasks
+                     // You can add any additional code here if needed
 }
