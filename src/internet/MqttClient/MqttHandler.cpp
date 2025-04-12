@@ -1,23 +1,8 @@
 #include "include/MqttHandler.h"
 
-// MqttHandler::MqttHandler(const std::string& broker, const std::string& clientId, const std::string& username, const std::string& password, int port)
-//     : broker(broker), clientId(clientId), username(username), password(password)
-// {
-//     // mqtt_cfg.uri = broker.c_str();
-//     mqtt_cfg.host = broker.c_str();
-//     mqtt_cfg.client_id = clientId.c_str();
-//     mqtt_cfg.username = username.c_str();
-//     mqtt_cfg.password = password.c_str();
-//     mqtt_cfg.port = port;
-//     mqtt_cfg.keepalive = 60;
-//     mqtt_cfg.buffer_size = 1024 * 4; // 4 KB buffer size
-//     mqtt_cfg.out_buffer_size = 1024 * 4; // 4 KB output buffer size
-//     mqtt_cfg.task_stack = 4096; // 4 KB stack size for the task
-// }
-
 bool MqttHandler::init(const std::string& broker, const std::string& clientId, const std::string& username, const std::string& password, int port)
 {
-    mqtt_cfg.uri = broker.c_str();
+    mqtt_cfg.host = broker.c_str();
     mqtt_cfg.client_id = clientId.c_str();
     mqtt_cfg.username = username.c_str();
     mqtt_cfg.password = password.c_str();
@@ -208,6 +193,12 @@ void MqttHandler::mqttEventHandler(void* handler_args, esp_event_base_t base, in
             break;
         case MQTT_EVENT_DATA:
             ESP_LOGI(CONFIG_MQTT_HANDLER_TAG, "Received data on topic %s: %.*s", event->topic, event->data_len, event->data);
+            break;
+        case MQTT_EVENT_ERROR:
+            ESP_LOGI(CONFIG_MQTT_HANDLER_TAG, "MQTT_EVENT_ERROR");
+            break;
+        case MQTT_EVENT_BEFORE_CONNECT:
+            ESP_LOGI(CONFIG_MQTT_HANDLER_TAG, "MQTT_EVENT_BEFORE_CONNECT");
             break;
         default:
             ESP_LOGE(CONFIG_MQTT_HANDLER_TAG, "Unhandled MQTT event: %d", id);

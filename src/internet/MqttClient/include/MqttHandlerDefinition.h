@@ -7,8 +7,7 @@
 #endif
 
 #ifndef CONFIG_MQTT_HANDLER_BROKER
-#define CONFIG_MQTT_HANDLER_BROKER              "mqtt://localhost" 
-// #define CONFIG_MQTT_HANDLER_BROKER              "mqtt" 
+#define CONFIG_MQTT_HANDLER_BROKER              "192.168.1.13" 
 #endif
 
 #ifndef CONFIG_MQTT_HANDLER_PREFIX_CLIENT_ID
