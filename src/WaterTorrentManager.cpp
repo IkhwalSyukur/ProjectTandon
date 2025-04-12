@@ -59,12 +59,14 @@ bool WaterTorrentManager::setupMqtt()
     _mqttHandler.setOnDisconnectedCallback([this]() { onMqttDisconnected(); });
 
     ESP_LOGI(TAG, "MQTT handler initialized successfully.");
+    _mqttHandler.publish("waterTorrent/sensor", "Device started", CONFIG_MQTT_QOS_DEFAULT, CONFIG_MQTT_RETAIN_MESSAGES);
+
     return true;
 }
 
 void WaterTorrentManager::onMqttConnected()
 {
-    _mqttHandler.subscribe("sensor/temperature", CONFIG_MQTT_QOS_DEFAULT);
+    // _mqttHandler.subscribe("waterTorrent/sensor", CONFIG_MQTT_QOS_DEFAULT);
 }
 
 void WaterTorrentManager::onMqttDisconnected()
