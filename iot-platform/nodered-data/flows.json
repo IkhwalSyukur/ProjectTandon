@@ -1,0 +1,347 @@
+[
+    {
+        "id": "6e06c8054a481095",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c93c4b2794a68929",
+        "type": "tab",
+        "label": "Water Torrent Manager",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "mqtt_broker",
+        "type": "mqtt-broker",
+        "name": "MQTT Local",
+        "broker": "mqtt",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "influxdb-config",
+        "type": "influxdb",
+        "hostname": "influxdb",
+        "port": "8086",
+        "protocol": "http",
+        "database": "iot_platform",
+        "name": "influxdb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "",
+        "timeout": "",
+        "rejectUnauthorized": false
+    },
+    {
+        "id": "39a0767ca3699123",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "172.18.0.3",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6bb8ba805077edfb",
+        "type": "inject",
+        "z": "6e06c8054a481095",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "25.3",
+        "payloadType": "str",
+        "x": 370,
+        "y": 420,
+        "wires": [
+            [
+                "f7b115d400f9700d",
+                "9eaad9974579e298"
+            ]
+        ]
+    },
+    {
+        "id": "f7b115d400f9700d",
+        "type": "mqtt out",
+        "z": "6e06c8054a481095",
+        "name": "",
+        "topic": "sensor/data",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "mqtt_broker",
+        "x": 590,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "format-influx",
+        "type": "function",
+        "z": "6e06c8054a481095",
+        "name": "Format for InfluxDB",
+        "func": "return {\n    measurement: \"iot_data\",\n    payload: {\n        temperature: parseFloat(msg.payload)\n    },\n    tags: {\n        location: \"lab1\"\n    }\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 420,
+        "wires": [
+            [
+                "influxdb-out",
+                "9d7c635740d87896"
+            ]
+        ]
+    },
+    {
+        "id": "influxdb-out",
+        "type": "influxdb out",
+        "z": "6e06c8054a481095",
+        "influxdb": "influxdb-config",
+        "name": "",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 1260,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "mqtt-in",
+        "type": "mqtt in",
+        "z": "6e06c8054a481095",
+        "name": "",
+        "topic": "sensor/data",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqtt_broker",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 830,
+        "y": 420,
+        "wires": [
+            [
+                "format-influx",
+                "fe63f3ce8eca95f1"
+            ]
+        ]
+    },
+    {
+        "id": "9d7c635740d87896",
+        "type": "debug",
+        "z": "6e06c8054a481095",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "fe63f3ce8eca95f1",
+        "type": "debug",
+        "z": "6e06c8054a481095",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "9eaad9974579e298",
+        "type": "debug",
+        "z": "6e06c8054a481095",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "7f72d3ec35929359",
+        "type": "influxdb in",
+        "z": "6e06c8054a481095",
+        "influxdb": "influxdb-config",
+        "name": "",
+        "query": "SELECT * FROM iot_data LIMIT 10",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 380,
+        "y": 580,
+        "wires": [
+            [
+                "96ba1e702f7fd11f"
+            ]
+        ]
+    },
+    {
+        "id": "11837613e7c102bd",
+        "type": "inject",
+        "z": "6e06c8054a481095",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 580,
+        "wires": [
+            [
+                "7f72d3ec35929359"
+            ]
+        ]
+    },
+    {
+        "id": "96ba1e702f7fd11f",
+        "type": "debug",
+        "z": "6e06c8054a481095",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "a707ec135801fb06",
+        "type": "mqtt in",
+        "z": "c93c4b2794a68929",
+        "name": "",
+        "topic": "waterTorrent/sensor",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "39a0767ca3699123",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 370,
+        "y": 340,
+        "wires": [
+            [
+                "ca32985800cb6696"
+            ]
+        ]
+    },
+    {
+        "id": "ca32985800cb6696",
+        "type": "debug",
+        "z": "c93c4b2794a68929",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 340,
+        "wires": []
+    }
+]
