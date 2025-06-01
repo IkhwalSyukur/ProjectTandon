@@ -2,6 +2,15 @@
 #include "WaterTorrentManager.h"
 #include "esp_log.h"
 
+// WaterTorrentManager.cpp
+#include "WaterTorrentManager.h"
+
+const char* MQTT_SERVER = "test.mosquitto.org"; // Public MQTT broker
+const int MQTT_PORT = 1883;
+const char* MQTT_ID = "WaterTorrentManager";
+const char* MQTT_PUBLISH_TOPIC = "water_torrent_armisuari/sensorData";
+const char* MQTT_SUBSCRIBE_TOPIC = "water_torrent_armisuari/control";
+
 static const char *TAG = "WaterTorrentManager";
 
 WaterTorrentManager::WaterTorrentManager(std::unique_ptr<WifiAdapterInterface> wifiAdapter)
@@ -30,46 +39,38 @@ bool WaterTorrentManager::begin()
         ESP_LOGI(TAG, " - %s", network.c_str());
     }
 
-    if (!setupMqtt())
+    vTaskDelay(2000); // Allow time for WiFi to stabilize
+    if (!_wifiAdapter->isConnected())
     {
-        ESP_LOGE(TAG, "Failed to set up MQTT handler.");
+        ESP_LOGE(TAG, "WiFi is not connected. Please check your network settings.");
         return false;
     }
+
+    // setup time from NTP
+    configTime(0, 0, "pool.ntp.org", "time.nist.gov");
+
+    mqttHandler.begin(
+        MQTT_SERVER,
+        MQTT_PORT
+    );
+
+    // Start periodic sending with our data preparation callback
+    mqttHandler.startSendTask(prepareSensorData);
+
+    // Send initial status
+    mqttHandler.sendString("{\"status\":\"online\"}");
 
     return true;
 }
 
-bool WaterTorrentManager::setupMqtt()
-{
-    const std::string broker = CONFIG_MQTT_HANDLER_BROKER;
-    const std::string clientId = CONFIG_MQTT_HANDLER_PREFIX_CLIENT_ID + _wifiAdapter->getMacAddress();
-    const std::string username = CONFIG_MQTT_HANDLER_USERNAME;
-    const std::string password = CONFIG_MQTT_HANDLER_PASSWORD;
-    const int port = CONFIG_MQTT_HANDLER_PORT;
-
-    ESP_LOGI(TAG, "Setting up MQTT with broker: %s, clientId: %s", broker.c_str(), clientId.c_str());
-
-    if (!_mqttHandler.init(broker, clientId, username, password, port))
-    {
-        ESP_LOGE(TAG, "Failed to initialize MQTT handler. Broker: %s, Port: %d", broker.c_str(), port);
-        return false;
-    }
-
-    _mqttHandler.setOnConnectedCallback([this]() { onMqttConnected(); });
-    _mqttHandler.setOnDisconnectedCallback([this]() { onMqttDisconnected(); });
-
-    ESP_LOGI(TAG, "MQTT handler initialized successfully.");
-    _mqttHandler.publish("waterTorrent/sensor", "Device started", CONFIG_MQTT_QOS_DEFAULT, CONFIG_MQTT_RETAIN_MESSAGES);
-
-    return true;
-}
-
-void WaterTorrentManager::onMqttConnected()
-{
-    // _mqttHandler.subscribe("waterTorrent/sensor", CONFIG_MQTT_QOS_DEFAULT);
-}
-
-void WaterTorrentManager::onMqttDisconnected()
-{
-    ESP_LOGI(TAG, "MQTT client disconnected. Attempting to reconnect...");
+void WaterTorrentManager::prepareSensorData(JsonDocument& doc) {
+    // Simulate sensor readings
+    float temperature = 25.0 + (random(0, 10) / 10.0);
+    float humidity = 40.0 + (random(0, 20) / 10.0);
+    
+    // Populate JSON document
+    doc["sensor_id"] = 1;
+    doc["temperature"] = temperature;
+    doc["humidity"] = humidity;
+    doc["timestamp"] = time(nullptr); // Current time in seconds since epoch
 }

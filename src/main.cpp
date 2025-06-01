@@ -28,7 +28,8 @@ void setup()
 
 void loop()
 {
-  vTaskDelete(NULL); // Delete the loop task to save power
-                     // The main logic of your program will be handled in the setup function or in other tasks
-                     // You can add any additional code here if needed
+  waterTorrentManager.mqttLoop();
+  
+  // Add any additional loop code here
+  vTaskDelay(pdMS_TO_TICKS(100)); // Delay to prevent busy-waiting
 }
