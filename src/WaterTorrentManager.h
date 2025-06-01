@@ -27,4 +27,5 @@ class WaterTorrentManager
         MQTTHandler mqttHandler{MQTT_ID, MQTT_PUBLISH_TOPIC, MQTT_SUBSCRIBE_TOPIC};
 
         static void prepareSensorData(JsonDocument& doc);
+        static WaterTorrentManager* instance;
 };

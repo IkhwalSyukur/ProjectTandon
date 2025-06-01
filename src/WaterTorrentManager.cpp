@@ -12,6 +12,7 @@ const char* MQTT_PUBLISH_TOPIC = "water_torrent_armisuari/sensorData";
 const char* MQTT_SUBSCRIBE_TOPIC = "water_torrent_armisuari/control";
 
 static const char *TAG = "WaterTorrentManager";
+WaterTorrentManager* WaterTorrentManager::instance = nullptr;
 
 WaterTorrentManager::WaterTorrentManager(std::unique_ptr<WifiAdapterInterface> wifiAdapter)
     : _wifiAdapter(std::move(wifiAdapter))
@@ -20,6 +21,8 @@ WaterTorrentManager::WaterTorrentManager(std::unique_ptr<WifiAdapterInterface> w
     {
         ESP_LOGE(TAG, "Failed to initialize WaterTorrentManager: Null pointer provided.");
     }
+
+    instance = this;
 }
 
 bool WaterTorrentManager::begin()
@@ -67,9 +70,8 @@ void WaterTorrentManager::prepareSensorData(JsonDocument& doc) {
     // Simulate sensor readings
     float temperature = 25.0 + (random(0, 10) / 10.0);
     float humidity = 40.0 + (random(0, 20) / 10.0);
-    
-    // Populate JSON document
-    doc["sensor_id"] = 1;
+
+    doc["device_id"] = MQTT_ID + std::string("_") + instance->_wifiAdapter->getMacAddress();
     doc["temperature"] = temperature;
     doc["humidity"] = humidity;
     doc["timestamp"] = time(nullptr); // Current time in seconds since epoch
