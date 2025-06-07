@@ -19,5 +19,14 @@
 2. node-red-contrib-telegrambot
 3. node-red-dashboard
 
+### Payload MQTT
 
+```JSON
+{
+"sensor_id": 1,
+"ketinggian_air": 23.62,
+"volume_air": 38.7,
+"status_pompa": "OFF",
+"timestamp": 1749104511
+}
 
