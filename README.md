@@ -11,7 +11,7 @@
 ![Dashboard](https://github.com/IkhwalSyukur/ProjectTandon/blob/dev/nodered-telegram/doc/dashboard.jpg)
 
 ### Notif Telegram
-[Telegram](https://github.com/IkhwalSyukur/ProjectTandon/blob/dev/nodered-telegram/doc/telegram.jpg)
+![Telegram](https://github.com/IkhwalSyukur/ProjectTandon/blob/dev/nodered-telegram/doc/telegram.jpg)
 
 
 ### Set Up
