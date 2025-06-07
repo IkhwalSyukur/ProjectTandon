@@ -1,20 +1,23 @@
-## Firmware Design ##
+## Water Torrent ##
 
-```C++
+## Teknologi yang Digunakan
+- **Node-Red**
+- **NodeJS**
+- **Telegram**
+- **Mosquitto**
 
-// Water level
-bool init();
-float getDistance();
+### Set Up
+1. Install Node-Red
+2. Install NodeJS
+3. Install Mosquitto
+4. Install Sqlite3 (path for database: C:\"User"\.node-red\data)
+5. Install DB Browser
+4. Create Telegram Bot (BotFather, getmyid_bot)
 
-// Water Flow
-bool init();
-float getFlowRate();
-float getVolumeHour();
-float getVolumeDay();
+### Library Node-Red
+1. node-red-node-sqlite
+2. node-red-contrib-telegrambot
+3. node-red-dashboard
 
-// Storage
-// Pump in
-// Pump out
-// Wifi
 
-```
+
