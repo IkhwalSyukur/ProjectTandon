@@ -1,10 +1,18 @@
 ## Water Torrent ##
 
-## Teknologi yang Digunakan
+## Technology
 - **Node-Red**
 - **NodeJS**
 - **Telegram**
 - **Mosquitto**
+
+## Node-Red
+### Dashboard
+![Dashboard](https://github.com/IkhwalSyukur/ProjectTandon/blob/dev/nodered-telegram/doc/dashboard.jpg)
+
+### Notif Telegram
+[Telegram](https://github.com/IkhwalSyukur/ProjectTandon/blob/dev/nodered-telegram/doc/telegram.jpg)
+
 
 ### Set Up
 1. Install Node-Red
@@ -27,6 +35,6 @@
 "ketinggian_air": 23.62,
 "volume_air": 38.7,
 "status_pompa": "OFF",
-"timestamp": 1749104511
+"timestamp": 1749313960
 }
 
