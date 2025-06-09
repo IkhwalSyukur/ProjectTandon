@@ -6,6 +6,13 @@
 - **Telegram**
 - **Mosquitto**
 
+## Communication Protocol
+**MQTT**
+- Broker: test.mosquitto.org
+- PORT: 1883
+- QoS: 0
+- Topic: water_torrent/sensorData
+
 ## Node-Red
 ### Dashboard
 ![Dashboard](https://github.com/IkhwalSyukur/ProjectTandon/blob/dev/nodered-telegram/doc/dashboard.jpg)
@@ -17,10 +24,9 @@
 ### Set Up
 1. Install Node-Red
 2. Install NodeJS
-3. Install Mosquitto
-4. Install Sqlite3 (path for database: C:\"User"\.node-red\data)
-5. Install DB Browser
-4. Create Telegram Bot (BotFather, getmyid_bot)
+3. Install Sqlite3 (path for database: C:\"User"\.node-red\data)
+4. Install DB Browser
+5. Create Telegram Bot (BotFather, getmyid_bot)
 
 ### Library Node-Red
 1. node-red-node-sqlite
@@ -35,6 +41,9 @@
 "ketinggian_air": 23.62,
 "volume_air": 38.7,
 "status_pompa": "OFF",
-"timestamp": 1749313960
+"status_ketinggia_air": "Tinggi",
+"status_volume_air": "Sedikit",
+"status_laju_air": "Lambat",
+"timestamp": 1749313960
 }
 
