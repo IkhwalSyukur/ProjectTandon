@@ -11,7 +11,8 @@
 - Broker: test.mosquitto.org
 - PORT: 1883
 - QoS: 0
-- Topic: water_torrent/sensorData
+- Topic Node 1: water_torrent/sensorData
+- Topic Node 2: water_torrent/sensorData_2
 
 ## Node-Red
 ### Dashboard
@@ -33,7 +34,8 @@
 2. node-red-contrib-telegrambot
 3. node-red-dashboard
 
-### Payload MQTT
+## Payload MQTT
+Change sensor_id with actual node number. i.e: "1" / "2".
 
 ```JSON
 {
