@@ -1,16 +1,556 @@
 [
     {
-        "id": "a781340859317bca",
+        "id": "c72758672bdb4a75",
         "type": "tab",
-        "label": "Water Torrents",
+        "label": "Water Torrents (Node 1)",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "80e29029631e47f0",
+        "id": "624ba602b36f01b4",
+        "type": "tab",
+        "label": "Water Torrents (Node 2)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "267ce6b6878ec045",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "test.mosquitto.org",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c6725f8a05863ee6",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "Dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "dashboard_tab",
+        "type": "ui_tab",
+        "name": "Water Torrent",
+        "icon": "Dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "dashboard_group",
+        "type": "ui_group",
+        "name": "Dashboard",
+        "tab": "dashboard_tab",
+        "order": 1,
+        "disp": false,
+        "width": 28,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3c17da2ef19d8cad",
+        "type": "sqlitedb",
+        "db": "C:\\Users\\MyBook Hype AMD\\.node-red\\data\\sensor_data.db",
+        "mode": "RWC"
+    },
+    {
+        "id": "83fda382c25c99be",
+        "type": "mqtt-broker",
+        "name": "Local",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f66fa1d0974a5d36",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "66829cd1.e354a4",
+        "type": "sqlitedb",
+        "db": "test",
+        "mode": "RWC"
+    },
+    {
+        "id": "9b99f9e0.924008",
+        "type": "mqtt-broker",
+        "name": "MQTT Broker",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "node-red",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "a835b380b37b8ac7",
+        "type": "ui_tab",
+        "name": "Database",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "aebfe53db41988ae",
+        "type": "ui_group",
+        "name": "Sensor Values",
+        "tab": "a835b380b37b8ac7",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e6f7g8h9.345678",
+        "type": "ui_tab",
+        "name": "Water Sensor",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "d5e6f7g8.234567",
+        "type": "ui_group",
+        "name": "Dashboard",
+        "tab": "e6f7g8h9.345678",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "sensor-tab",
+        "type": "ui_tab",
+        "name": "Sensor Data",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "dashboard-group",
+        "type": "ui_group",
+        "name": "Dashboard",
+        "tab": "sensor-tab",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "b2c3d4e5.6f7g8h",
+        "type": "ui_tab",
+        "name": "Sensor Data",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a1b2c3d4.5e6f7g",
+        "type": "ui_group",
+        "name": "Export Data",
+        "tab": "b2c3d4e5.6f7g8h",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "sqlite-db",
+        "type": "sqlitedb",
+        "db": "C:/Users/MyBook Hype AMD/.node-red/data/sensor_data.db",
+        "mode": "R"
+    },
+    {
+        "id": "1ebf21c9ee91ee53",
+        "type": "telegram bot",
+        "botname": "water_torrent_bot_2",
+        "usernames": "watertorrent_2_bot",
+        "chatids": "5331421257",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "f28a806608d668cb",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 9,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "34d5cefbb33dbf97",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 11,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "c92f62847d03bbe0",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 13,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "bcc71ef003d20aa2",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 15,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "286956c8e53a5a53",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 16,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "899e45fe1c08d0db",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 17,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "d685ec05f1b2ccfe",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 18,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a7d1a46f72bf20cf",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 20,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "73a23ae2de2774d1",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 22,
+        "width": 28,
+        "height": 1
+    },
+    {
+        "id": "6b91e02dcaf06962",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 31,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "e9760fbe420919c6",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 33,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "ddb691bf7739d1e6",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 35,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "b5d081c33a7fdf69",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 37,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "d9d526bf87d463c3",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 38,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "230f443a7a0f68e6",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 39,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "d6e10c9fcf8b5614",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 40,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "07b272fefb62c6a4",
+        "type": "ui_spacer",
+        "z": "624ba602b36f01b4",
+        "name": "spacer",
+        "group": "dashboard_group",
+        "order": 42,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "c5fa723029798a6b",
+        "type": "telegram bot",
+        "botname": "water_torrent_bot",
+        "usernames": "watertorrent_bot",
+        "chatids": "5331421257",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "2b52e1478fd8782c",
         "type": "mqtt in",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "MQTT Sensor Data",
         "topic": "water_torrent/sensorData",
         "qos": "0",
@@ -23,16 +563,16 @@
         "y": 560,
         "wires": [
             [
-                "fbf235bb150a041a",
-                "4d1eca22d15de93b",
-                "a930dff3922d408b"
+                "3433eef469ef5357",
+                "072e468fb97501a3",
+                "81568dc01e7ebfba"
             ]
         ]
     },
     {
-        "id": "fbf235bb150a041a",
+        "id": "3433eef469ef5357",
         "type": "function",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Parse sensor JSON",
         "func": "function formatTime(ts) {\n    var d = new Date(ts * 1000);\n    return d.getFullYear() + '-' +\n        String(d.getMonth() + 1).padStart(2, '0') + '-' +\n        String(d.getDate()).padStart(2, '0') + ' ' +\n        String(d.getHours()).padStart(2, '0') + ':' +\n        String(d.getMinutes()).padStart(2, '0') + ':' +\n        String(d.getSeconds()).padStart(2, '0');\n}\n\n// Ambil data dari payload\nvar ka = msg.payload.ketinggian_air || 0;\nvar va = msg.payload.volume_air || 0;\nvar sp = msg.payload.status_pompa || 0;\nvar sk = msg.payload.status_ketinggia_air || \"UNKNOWN\";\nvar sv = msg.payload.status_volume_air || \"UNKNOWN\";\nvar sl = msg.payload.status_laju_air || \"UNKNOWN\";\nvar time = formatTime(msg.payload.timestamp);\n\n// Buat objek pesan untuk setiap output\nvar msgKa = { payload: ka, time: time };\nvar msgVa = { payload: va, time: time };\nvar msgSp = { payload: sp, time: time };\nvar msgSk = { payload: sk, time: time };\nvar msgSv = { payload: sv, time: time };\nvar msgSl = { payload: sl, time: time };\n\n// Return array dengan 6 pesan, urutan sesuai output node\nreturn [msgKa, msgVa, msgSp, msgSk, msgSv, msgSl];\n",
         "outputs": 6,
@@ -45,31 +585,31 @@
         "y": 360,
         "wires": [
             [
-                "f8becf238714dfe7"
+                "821264f4acfe274a"
             ],
             [
-                "4ef08bf2e933d13e",
-                "a438f4851da18956"
+                "a3a560a653e4507e",
+                "3458325a324cbc32"
             ],
             [
-                "19e94730133e2ba4",
-                "2c63bf7f08f4f526"
+                "e4d9a9a6dde409cc",
+                "e990c70ce2d66e4f"
             ],
             [
-                "7e3af45810852dee"
+                "3fabed3e15fd29bd"
             ],
             [
-                "281bc88599638183"
+                "06f38436f707d87e"
             ],
             [
-                "ba4c155160462645"
+                "8ad601fd8c731620"
             ]
         ]
     },
     {
-        "id": "4d1eca22d15de93b",
+        "id": "072e468fb97501a3",
         "type": "function",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Prepare SQLite Insert",
         "func": "function formatCustomDateTime(ts) {\n    try {\n        // Buat objek Date\n        let dateObj;\n        \n        // Handle berbagai kemungkinan input timestamp\n        if (ts === undefined || ts === null) {\n            dateObj = new Date(); // Waktu sekarang jika tidak ada input\n        } else if (typeof ts === 'number') {\n            // Anggap sebagai Unix timestamp (detik)\n            dateObj = new Date(ts * 1000);\n        } else if (typeof ts === 'string') {\n            // Handle string timestamp\n            if (ts.includes('T')) {\n                // Format ISO (e.g., \"2025-06-05T09:12:39Z\")\n                dateObj = new Date(ts);\n            } else if (/^\\d+$/.test(ts)) {\n                // String angka (Unix timestamp dalam string)\n                dateObj = new Date(parseInt(ts) * 1000);\n            } else if (/^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$/.test(ts)) {\n                // Jika sudah dalam format yang benar, langsung return\n                return ts;\n            } else {\n                // Coba parse format lain\n                dateObj = new Date(ts);\n            }\n        } else {\n            // Fallback ke waktu sekarang\n            dateObj = new Date();\n        }\n\n        // Validasi Date object\n        if (isNaN(dateObj.getTime())) {\n            throw new Error(\"Invalid date object\");\n        }\n\n        // Format sesuai permintaan: \"YYYY-MM-DD HH:MM:SS\"\n        const formatted = dateObj.getFullYear() + '-' +\n            String(dateObj.getMonth() + 1).padStart(2, '0') + '-' +\n            String(dateObj.getDate()).padStart(2, '0') + ' ' +\n            String(dateObj.getHours()).padStart(2, '0') + ':' +\n            String(dateObj.getMinutes()).padStart(2, '0') + ':' +\n            String(dateObj.getSeconds()).padStart(2, '0');\n\n        // Validasi format output\n        if (!/^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$/.test(formatted)) {\n            throw new Error(\"Formatting failed\");\n        }\n\n        return formatted;\n    } catch (e) {\n        node.error(\"Error in formatCustomDateTime: \" + e.toString());\n        // Fallback ke waktu sekarang dengan format yang benar\n        const now = new Date();\n        return now.getFullYear() + '-' +\n            String(now.getMonth() + 1).padStart(2, '0') + '-' +\n            String(now.getDate()).padStart(2, '0') + ' ' +\n            String(now.getHours()).padStart(2, '0') + ':' +\n            String(now.getMinutes()).padStart(2, '0') + ':' +\n            String(now.getSeconds()).padStart(2, '0');\n    }\n}\n\n// Ambil data dari payload dengan default value\nvar ka = (msg.payload.ketinggian_air !== undefined) ? msg.payload.ketinggian_air : 0;\nvar va = (msg.payload.volume_air !== undefined) ? msg.payload.volume_air : 0;\nvar sp = (msg.payload.status_pompa !== undefined) ? String(msg.payload.status_pompa) : \"0\";\n\n// Format waktu dengan penanganan error\nvar customTime;\ntry {\n    customTime = formatCustomDateTime(msg.payload.timestamp);\n} catch (e) {\n    node.error(\"Failed to format time, using current time. Error: \" + e);\n    customTime = formatCustomDateTime(); // Waktu sekarang\n}\n\n// Pastikan tidak ada nilai undefined/null\nvar values = [\n    customTime !== null ? customTime : formatCustomDateTime(),\n    ka !== null ? ka : 0,\n    va !== null ? va : 0,\n    sp !== null ? sp : \"0\"\n];\n\n// Siapkan query SQL\nmsg.topic = 'INSERT INTO data_air (time, tinggi_air, volume_air, status_pompa) VALUES (?, ?, ?, ?)';\nmsg.payload = values;\n\n// Final validation\nif (values.some(v => v === null || v === undefined)) {\n    node.error(\"NULL value detected in query parameters!\");\n    node.error(\"Values: \" + JSON.stringify(values));\n} else {\n    node.log(\"Data ready for insertion\");\n}\n\nreturn msg;",
         "outputs": 1,
@@ -82,14 +622,14 @@
         "y": 620,
         "wires": [
             [
-                "806ebe5c7623333c"
+                "4a39c50d0a5c342f"
             ]
         ]
     },
     {
-        "id": "21cf1a1b436569c5",
+        "id": "6d0a5dda5a9d1852",
         "type": "sqlite",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "mydb": "3c17da2ef19d8cad",
         "sqlquery": "msg.topic",
         "sql": "",
@@ -101,12 +641,12 @@
         ]
     },
     {
-        "id": "f8becf238714dfe7",
+        "id": "821264f4acfe274a",
         "type": "ui_gauge",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Tinggi Air (cm)",
         "group": "dashboard_group",
-        "order": 1,
+        "order": 2,
         "width": 9,
         "height": 6,
         "gtype": "gage",
@@ -129,12 +669,12 @@
         "wires": []
     },
     {
-        "id": "4ef08bf2e933d13e",
+        "id": "a3a560a653e4507e",
         "type": "ui_gauge",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Volume Air (m³/hari)",
         "group": "dashboard_group",
-        "order": 2,
+        "order": 3,
         "width": 9,
         "height": 6,
         "gtype": "gage",
@@ -157,11 +697,11 @@
         "wires": []
     },
     {
-        "id": "19e94730133e2ba4",
+        "id": "e4d9a9a6dde409cc",
         "type": "ui_text",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "group": "dashboard_group",
-        "order": 11,
+        "order": 12,
         "width": 9,
         "height": 1,
         "name": "Status Pompa",
@@ -178,9 +718,9 @@
         "wires": []
     },
     {
-        "id": "806ebe5c7623333c",
+        "id": "4a39c50d0a5c342f",
         "type": "function",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Validate Query",
         "func": "// Fungsi ini harus ditempatkan SEBELUM node SQLite\ntry {\n    // Pastikan tidak ada nilai null\n    const cleanPayload = msg.payload.map(item =>\n        item === null ? (item === undefined ? \"\" : item) : item\n    );\n\n    // Konversi ke prepared statement format\n    msg.topic = `INSERT INTO data_air (time, tinggi_air, volume_air, status_pompa) \n                VALUES ('${cleanPayload[0]}', ${cleanPayload[1]}, ${cleanPayload[2]}, '${cleanPayload[3]}')`;\n\n    // Alternatif jika ingin tetap menggunakan prepared statement:\n    // msg.topic = \"INSERT INTO data_air VALUES (NULL, ?, ?, ?, ?)\";\n    // msg.payload = cleanPayload;\n\n    node.warn(\"Final SQL Query: \" + msg.topic);\n    return msg;\n} catch (e) {\n    node.error(\"Error preparing SQL: \" + e);\n    return null;\n}",
         "outputs": 1,
@@ -193,17 +733,17 @@
         "y": 620,
         "wires": [
             [
-                "21cf1a1b436569c5"
+                "6d0a5dda5a9d1852"
             ]
         ]
     },
     {
-        "id": "a438f4851da18956",
+        "id": "3458325a324cbc32",
         "type": "ui_chart",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "",
         "group": "dashboard_group",
-        "order": 7,
+        "order": 8,
         "width": 9,
         "height": 7,
         "label": "Grafik Volume Air (L/hari)",
@@ -242,11 +782,11 @@
         ]
     },
     {
-        "id": "fd517d5531c91777",
+        "id": "ede3a34e648a77f1",
         "type": "ui_text",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "group": "dashboard_group",
-        "order": 3,
+        "order": 4,
         "width": 10,
         "height": 1,
         "name": "Table Title",
@@ -258,12 +798,12 @@
         "wires": []
     },
     {
-        "id": "2c63bf7f08f4f526",
+        "id": "e990c70ce2d66e4f",
         "type": "ui_template",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "group": "dashboard_group",
         "name": "LED Status Pompa",
-        "order": 13,
+        "order": 14,
         "width": 5,
         "height": 2,
         "format": "<div style=\"text-align:center\">\n  <div style=\"width:80px;height:80px;border-radius:50%;margin:auto\"\n    ng-style=\"{'background-color': msg.payload === 'ON' ? 'green' : 'red'}\">\n  </div>\n  <p style=\"margin:4px 0 0 0;font-weight:bold\"></p>\n</div>",
@@ -279,12 +819,12 @@
         ]
     },
     {
-        "id": "d391d76d90cb9f3a",
+        "id": "f427afb33afe512e",
         "type": "ui_button",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Show Log Data",
         "group": "dashboard_group",
-        "order": 17,
+        "order": 19,
         "width": 3,
         "height": 1,
         "passthru": false,
@@ -302,14 +842,14 @@
         "y": 860,
         "wires": [
             [
-                "811e473a8eac80c9"
+                "fe9bf13794ddb505"
             ]
         ]
     },
     {
-        "id": "811e473a8eac80c9",
+        "id": "fe9bf13794ddb505",
         "type": "function",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Fetch Log Data",
         "func": "msg.topic = \"SELECT time, tinggi_air, volume_air, status_pompa FROM data_air ORDER BY time DESC\";\nreturn msg;",
         "outputs": 1,
@@ -321,14 +861,14 @@
         "y": 860,
         "wires": [
             [
-                "39b9ebf5e199d976"
+                "403d71fc7161e4be"
             ]
         ]
     },
     {
-        "id": "39b9ebf5e199d976",
+        "id": "403d71fc7161e4be",
         "type": "sqlite",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "mydb": "3c17da2ef19d8cad",
         "sqlquery": "msg.topic",
         "sql": "",
@@ -337,14 +877,14 @@
         "y": 860,
         "wires": [
             [
-                "218da8cea3b2470b"
+                "c66d6809cefaff20"
             ]
         ]
     },
     {
-        "id": "218da8cea3b2470b",
+        "id": "c66d6809cefaff20",
         "type": "function",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Format Log Table",
         "func": "let rows = msg.payload;\n\nlet html = `\n<table class=\"custom-table\">\n  <thead>\n    <tr>\n      <th>Time</th>\n      <th>Tinggi Air (cm)</th>\n      <th>Volume Air (L/hari)</th>\n      <th>Status Pompa</th>\n    </tr>\n  </thead>\n  <tbody>\n`;\n\nfor (let i = 0; i < rows.length; i++) {\n  html += `\n    <tr>\n      <td>${rows[i].time}</td>\n      <td>${rows[i].tinggi_air}</td>\n      <td>${rows[i].volume_air}</td>\n      <td>${rows[i].status_pompa}</td>\n    </tr>\n    `;\n}\n\nhtml += `\n  </tbody>\n</table>\n`;\n\nmsg.payload = html;\nreturn msg;\n",
         "outputs": 1,
@@ -357,17 +897,17 @@
         "y": 860,
         "wires": [
             [
-                "8cce69f56956db53"
+                "1e883e8b5831f71e"
             ]
         ]
     },
     {
-        "id": "8cce69f56956db53",
+        "id": "1e883e8b5831f71e",
         "type": "ui_template",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "group": "dashboard_group",
         "name": "Log Data Table",
-        "order": 4,
+        "order": 5,
         "width": 10,
         "height": 11,
         "format": "<style>\n    table.custom-table {\n        width: 100%;\n        border-collapse: collapse;\n        font-size: 14px;\n        text-align: center;\n    }\n\n    table.custom-table th,\n    table.custom-table td {\n        border: 1px solid #ccc;\n        padding: 8px;\n        text-align: center;\n        vertical-align: middle;\n    }\n\n    table.custom-table th {\n        background-color: #007acc;\n        color: white;\n    }\n</style>\n\n<div ng-bind-html=\"msg.payload\"></div>",
@@ -383,9 +923,9 @@
         ]
     },
     {
-        "id": "ea443d312d384f5a",
+        "id": "bd0e1870c5e5116c",
         "type": "http in",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "HTTP In Download CSV",
         "url": "/download-csv",
         "method": "get",
@@ -395,14 +935,14 @@
         "y": 1100,
         "wires": [
             [
-                "73b7b4685bf46db8"
+                "a3396332a6a69023"
             ]
         ]
     },
     {
-        "id": "73b7b4685bf46db8",
+        "id": "a3396332a6a69023",
         "type": "function",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Generate CSV & Respond",
         "func": "// Query SQL string\nconst sql = `SELECT time, tinggi_air, volume_air, status_pompa FROM data_air ORDER BY time DESC`;\n\n// Simpan SQL di msg untuk sqlite node\nmsg.topic = sql;\nreturn msg;",
         "outputs": 1,
@@ -411,14 +951,14 @@
         "y": 1020,
         "wires": [
             [
-                "fb49db71553b082d"
+                "2cb5aa2fe318d57a"
             ]
         ]
     },
     {
-        "id": "fb49db71553b082d",
+        "id": "2cb5aa2fe318d57a",
         "type": "sqlite",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "mydb": "3c17da2ef19d8cad",
         "sqlquery": "msg.topic",
         "sql": "",
@@ -427,14 +967,14 @@
         "y": 1100,
         "wires": [
             [
-                "c4665b54cbd1ce59"
+                "a3b5f22986c29045"
             ]
         ]
     },
     {
-        "id": "70f3b3c773dddcb3",
+        "id": "e80988e51f041840",
         "type": "http response",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "HTTP Response CSV",
         "statusCode": "",
         "headers": {},
@@ -443,11 +983,11 @@
         "wires": []
     },
     {
-        "id": "c4665b54cbd1ce59",
+        "id": "a3b5f22986c29045",
         "type": "function",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Create CSV & Send Response",
-        "func": "// Prepare CSV content\nconst rows = msg.payload;\n\n// Header\nlet csv = 'Time,Tinggi Air (m),Volume Air (m³/hari),Status Pompa\\n';\n\n// Rows\nrows.forEach(row => {\n    csv += `${row.time},${row.tinggi_air},${row.volume_air},${row.status_pompa}\\n`;\n});\n\n// Buat nama file dinamis berdasarkan tanggal dan waktu (YYYYMMDD_HHMM)\nconst date = new Date();\nconst pad = n => (n < 10 ? '0' + n : n);\nconst filename = `download_water_torrents_${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}_${pad(date.getHours())}${pad(date.getMinutes())}.csv`;\n\n// Set header agar file terdownload dengan nama yang benar\nmsg.headers = {\n    'Content-Type': 'text/csv',\n    'Content-Disposition': `attachment; filename=\"${filename}\"`\n};\n\n// Set payload\nmsg.payload = csv;\n\nreturn msg;\n",
+        "func": "// Prepare CSV content\nconst rows = msg.payload;\n\n// Header\nlet csv = 'Time,Tinggi Air (m),Volume Air (m³/hari),Status Pompa\\n';\n\n// Rows\nrows.forEach(row => {\n    csv += `${row.time},${row.tinggi_air},${row.volume_air},${row.status_pompa}\\n`;\n});\n\n// Buat nama file dinamis berdasarkan tanggal dan waktu (YYYYMMDD_HHMM)\nconst date = new Date();\nconst pad = n => (n < 10 ? '0' + n : n);\nconst filename = `download_water_torrents_1_${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}_${pad(date.getHours())}${pad(date.getMinutes())}.csv`;\n\n// Set header agar file terdownload dengan nama yang benar\nmsg.headers = {\n    'Content-Type': 'text/csv',\n    'Content-Disposition': `attachment; filename=\"${filename}\"`\n};\n\n// Set payload\nmsg.payload = csv;\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -458,17 +998,17 @@
         "y": 1020,
         "wires": [
             [
-                "70f3b3c773dddcb3"
+                "e80988e51f041840"
             ]
         ]
     },
     {
-        "id": "e41f10e4d86f4cfd",
+        "id": "c700505f589b038a",
         "type": "ui_template",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "group": "dashboard_group",
         "name": "Download CSV File Button",
-        "order": 19,
+        "order": 21,
         "width": 4,
         "height": 1,
         "format": "<md-button class=\"md-raised md-primary\" ng-click=\"downloadCsv()\"\n    style=\"width: 180px; height: 90px; color: white; background-color: #4CAF50; font-size: 14px; font-weight: bold; text-transform: uppercase; border-radius: 4px;\">\n    <i class=\"fa fa-download\" style=\"margin-right: 6px;\"></i> DOWNLOAD DATA\n</md-button>\n\n<script>\n    (function(scope){\n        scope.downloadCsv = function() {\n            window.open('/download-csv', '_blank');\n        };\n    })(scope);\n</script>",
@@ -481,14 +1021,14 @@
         "y": 1020,
         "wires": [
             [
-                "73b7b4685bf46db8"
+                "a3396332a6a69023"
             ]
         ]
     },
     {
-        "id": "bfd6f8b7366b3bfe",
+        "id": "f2a363af8086ba5d",
         "type": "telegram sender",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "",
         "bot": "1ebf21c9ee91ee53",
         "haserroroutput": false,
@@ -500,9 +1040,9 @@
         ]
     },
     {
-        "id": "a930dff3922d408b",
+        "id": "81568dc01e7ebfba",
         "type": "json",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Payload JSON",
         "property": "payload",
         "action": "obj",
@@ -511,17 +1051,17 @@
         "y": 700,
         "wires": [
             [
-                "59e71408f149709f",
-                "d56113f4ddcdb0c1"
+                "aba9d7de71e9d1ed",
+                "8fbc4e1d67f5ea8c"
             ]
         ]
     },
     {
-        "id": "59e71408f149709f",
+        "id": "aba9d7de71e9d1ed",
         "type": "function",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Notif Telegram",
-        "func": "function formatTime(ts) {\n    var d = new Date(ts * 1000);\n    return d.getFullYear() + '-' +\n        String(d.getMonth() + 1).padStart(2, '0') + '-' +\n        String(d.getDate()).padStart(2, '0') + ' ' +\n        String(d.getHours()).padStart(2, '0') + ':' +\n        String(d.getMinutes()).padStart(2, '0') + ':' +\n        String(d.getSeconds()).padStart(2, '0');\n}\n\n// Ambil data dari payload existing (yang selama ini dipakai)\nvar ka = msg.payload.ketinggian_air || 0;\nvar va = msg.payload.volume_air || 0;\nvar sp = (msg.payload.status_pompa || \"\").toUpperCase();\nvar time = formatTime(msg.payload.timestamp || (Date.now() / 1000));\n\n// Ambil data parameter baru dari payload terbaru (bisa kosong jika tidak ada)\nvar statusKetinggian = msg.payload.status_ketinggia_air || \"-\";\nvar statusVolume = msg.payload.status_volume_air || \"-\";\nvar statusLaju = msg.payload.status_laju_air || \"-\";\n\n// Ambil status pompa terakhir dari context flow\nvar lastStatus = flow.get('lastPompaStatus');\n\n// Cek apakah status pompa berubah, baru kirim notifikasi\nif (lastStatus !== sp) {\n    flow.set('lastPompaStatus', sp);\n\n    var statusAir = sp === \"ON\" ? \"Habis\" : \"Penuh\";\n    var statusPompa = sp === \"ON\" ? \"AKTIF\" : \"MATI\";\n\n    // Format pesan notifikasi gabungkan semua data\n    var notifText = `🚨 Notifikasi (Water Torrent)\\n\\n` +\n        `Ketinggian Air : ${ka} CM\\n` +\n        `Volume Air : ${va} L\\n` +\n        `Status Pompa : ${statusPompa}\\n\\n` +\n        `Status Ketinggian Air : ${statusKetinggian}\\n` +\n        `Status Volume Air : ${statusVolume}\\n` +\n        `Status Laju Air : ${statusLaju}\\n\\n` +\n        `Waktu : ${time}`;\n\n    return {\n        payload: {\n            type: \"message\",\n            chatId: 5331421257,\n            content: notifText\n        }\n    };\n}\n\n// Jika status pompa tidak berubah, tidak kirim apa-apa\nreturn null;\n",
+        "func": "function formatTime(ts) {\n    var d = new Date(ts * 1000);\n    return d.getFullYear() + '-' +\n        String(d.getMonth() + 1).padStart(2, '0') + '-' +\n        String(d.getDate()).padStart(2, '0') + ' ' +\n        String(d.getHours()).padStart(2, '0') + ':' +\n        String(d.getMinutes()).padStart(2, '0') + ':' +\n        String(d.getSeconds()).padStart(2, '0');\n}\n\n// Ambil data dari payload existing (yang selama ini dipakai)\nvar ka = msg.payload.ketinggian_air || 0;\nvar va = msg.payload.volume_air || 0;\nvar sp = (msg.payload.status_pompa || \"\").toUpperCase();\nvar time = formatTime(msg.payload.timestamp || (Date.now() / 1000));\n\n// Ambil data parameter baru dari payload terbaru (bisa kosong jika tidak ada)\nvar statusKetinggian = msg.payload.status_ketinggia_air || \"-\";\nvar statusVolume = msg.payload.status_volume_air || \"-\";\nvar statusLaju = msg.payload.status_laju_air || \"-\";\n\n// Ambil status pompa terakhir dari context flow\nvar lastStatus = flow.get('lastPompaStatus');\n\n// Cek apakah status pompa berubah, baru kirim notifikasi\nif (lastStatus !== sp) {\n    flow.set('lastPompaStatus', sp);\n\n    var statusAir = sp === \"ON\" ? \"Habis\" : \"Penuh\";\n    var statusPompa = sp === \"ON\" ? \"AKTIF\" : \"MATI\";\n\n    // Format pesan notifikasi gabungkan semua data\n    var notifText = `🚨 Notifikasi (Water Torrent Node 1)\\n\\n` +\n        `Ketinggian Air : ${ka} CM\\n` +\n        `Volume Air : ${va} L\\n` +\n        `Status Pompa : ${statusPompa}\\n\\n` +\n        `Status Ketinggian Air : ${statusKetinggian}\\n` +\n        `Status Volume Air : ${statusVolume}\\n` +\n        `Status Laju Air : ${statusLaju}\\n\\n` +\n        `Waktu : ${time}`;\n\n    return {\n        payload: {\n            type: \"message\",\n            chatId: 5331421257,\n            content: notifText\n        }\n    };\n}\n\n// Jika status pompa tidak berubah, tidak kirim apa-apa\nreturn null;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -532,14 +1072,14 @@
         "y": 700,
         "wires": [
             [
-                "bfd6f8b7366b3bfe"
+                "f2a363af8086ba5d"
             ]
         ]
     },
     {
-        "id": "4235a7448c45a037",
+        "id": "a13ec9fc53e18e7c",
         "type": "telegram receiver",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "",
         "bot": "1ebf21c9ee91ee53",
         "saveDataDir": "",
@@ -548,17 +1088,17 @@
         "y": 780,
         "wires": [
             [
-                "d56113f4ddcdb0c1"
+                "8fbc4e1d67f5ea8c"
             ],
             []
         ]
     },
     {
-        "id": "d56113f4ddcdb0c1",
+        "id": "8fbc4e1d67f5ea8c",
         "type": "function",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "name": "Request Telegram",
-        "func": "function formatLine(label, value) {\n    return `\\`${label.padEnd(18, ' ')}: ${value}\\``;\n}\n\n// Cek apakah ini permintaan status dari Telegram\nif (msg.payload.type === \"message\" && msg.payload.content === \"/status\") {\n    // Ambil data terakhir yang tersimpan di flow context (existing dan baru)\n    var ka = flow.get('lastKetinggianAir') || 0;\n    var va = flow.get('lastVolumeAir') || 0;\n    var sp = (flow.get('lastStatusPompa') || \"\").toUpperCase();\n\n    // Data status terbaru (tambahan)\n    var statusKetinggian = flow.get('lastStatusKetinggianAir') || \"-\";\n    var statusVolume = flow.get('lastStatusVolumeAir') || \"-\";\n    var statusLaju = flow.get('lastStatusLajuAir') || \"-\";\n\n    // Format status pompa\n    var statusPompa = sp === \"ON\" ? \"AKTIF\" : \"MATI\";\n\nvar content =\n    \"💧 Water Torrent\\n\\n\" +\n    \"Ketinggian Air : \" + ka + \" CM\\n\" +\n    \"Volume Air/Hari : \" + va + \" L\\n\" +\n    \"Status Pompa : \" + statusPompa + \"\\n\\n\" +\n    \"Status Ketinggian Air : \" + statusKetinggian + \"\\n\" +\n    \"Status Volume Air : \" + statusVolume + \"\\n\" +\n    \"Status Laju Air : \" + statusLaju;\n\n\n    return {\n        payload: {\n            type: \"message\",\n            chatId: msg.payload.chatId,\n            messageId: msg.payload.messageId,\n            content: content\n        }\n    };\n}\n\n// Jika bukan permintaan status, simpan saja data terbaru (existing dan tambahan)\nif (msg.payload.ketinggian_air !== undefined) {\n    flow.set('lastKetinggianAir', msg.payload.ketinggian_air);\n}\nif (msg.payload.volume_air !== undefined) {\n    flow.set('lastVolumeAir', msg.payload.volume_air);\n}\nif (msg.payload.status_pompa !== undefined) {\n    flow.set('lastStatusPompa', msg.payload.status_pompa.toUpperCase());\n}\n\n// Simpan juga data status terbaru jika ada\nif (msg.payload.status_ketinggia_air !== undefined) {\n    flow.set('lastStatusKetinggianAir', msg.payload.status_ketinggia_air);\n}\nif (msg.payload.status_volume_air !== undefined) {\n    flow.set('lastStatusVolumeAir', msg.payload.status_volume_air);\n}\nif (msg.payload.status_laju_air !== undefined) {\n    flow.set('lastStatusLajuAir', msg.payload.status_laju_air);\n}\n\n// Tidak mengembalikan apa-apa jika bukan permintaan status\nreturn null;\n",
+        "func": "function formatLine(label, value) {\n    return `\\`${label.padEnd(18, ' ')}: ${value}\\``;\n}\n\n// Cek apakah ini permintaan status dari Telegram\nif (msg.payload.type === \"message\" && msg.payload.content === \"/status_node1\") {\n    // Ambil data terakhir yang tersimpan di flow context (existing dan baru)\n    var ka = flow.get('lastKetinggianAir') || 0;\n    var va = flow.get('lastVolumeAir') || 0;\n    var sp = (flow.get('lastStatusPompa') || \"\").toUpperCase();\n\n    // Data status terbaru (tambahan)\n    var statusKetinggian = flow.get('lastStatusKetinggianAir') || \"-\";\n    var statusVolume = flow.get('lastStatusVolumeAir') || \"-\";\n    var statusLaju = flow.get('lastStatusLajuAir') || \"-\";\n\n    // Format status pompa\n    var statusPompa = sp === \"ON\" ? \"AKTIF\" : \"MATI\";\n\nvar content =\n    \"💧 Water Torrent Node 1\\n\\n\" +\n    \"Ketinggian Air : \" + ka + \" CM\\n\" +\n    \"Volume Air/Hari : \" + va + \" L\\n\" +\n    \"Status Pompa : \" + statusPompa + \"\\n\\n\" +\n    \"Status Ketinggian Air : \" + statusKetinggian + \"\\n\" +\n    \"Status Volume Air : \" + statusVolume + \"\\n\" +\n    \"Status Laju Air : \" + statusLaju;\n\n\n    return {\n        payload: {\n            type: \"message\",\n            chatId: msg.payload.chatId,\n            messageId: msg.payload.messageId,\n            content: content\n        }\n    };\n}\n\n// Jika bukan permintaan status, simpan saja data terbaru (existing dan tambahan)\nif (msg.payload.ketinggian_air !== undefined) {\n    flow.set('lastKetinggianAir', msg.payload.ketinggian_air);\n}\nif (msg.payload.volume_air !== undefined) {\n    flow.set('lastVolumeAir', msg.payload.volume_air);\n}\nif (msg.payload.status_pompa !== undefined) {\n    flow.set('lastStatusPompa', msg.payload.status_pompa.toUpperCase());\n}\n\n// Simpan juga data status terbaru jika ada\nif (msg.payload.status_ketinggia_air !== undefined) {\n    flow.set('lastStatusKetinggianAir', msg.payload.status_ketinggia_air);\n}\nif (msg.payload.status_volume_air !== undefined) {\n    flow.set('lastStatusVolumeAir', msg.payload.status_volume_air);\n}\nif (msg.payload.status_laju_air !== undefined) {\n    flow.set('lastStatusLajuAir', msg.payload.status_laju_air);\n}\n\n// Tidak mengembalikan apa-apa jika bukan permintaan status\nreturn null;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -569,16 +1109,16 @@
         "y": 780,
         "wires": [
             [
-                "bfd6f8b7366b3bfe"
+                "f2a363af8086ba5d"
             ]
         ]
     },
     {
-        "id": "7e3af45810852dee",
+        "id": "3fabed3e15fd29bd",
         "type": "ui_text",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "group": "dashboard_group",
-        "order": 5,
+        "order": 6,
         "width": 5,
         "height": 1,
         "name": "Status Ketinggian Air",
@@ -595,11 +1135,11 @@
         "wires": []
     },
     {
-        "id": "281bc88599638183",
+        "id": "06f38436f707d87e",
         "type": "ui_text",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "group": "dashboard_group",
-        "order": 6,
+        "order": 7,
         "width": 4,
         "height": 1,
         "name": "Status Volume Air",
@@ -616,11 +1156,11 @@
         "wires": []
     },
     {
-        "id": "ba4c155160462645",
+        "id": "8ad601fd8c731620",
         "type": "ui_text",
-        "z": "a781340859317bca",
+        "z": "c72758672bdb4a75",
         "group": "dashboard_group",
-        "order": 9,
+        "order": 10,
         "width": 9,
         "height": 1,
         "name": "Status Laju Air",
@@ -637,157 +1177,684 @@
         "wires": []
     },
     {
-        "id": "128da9f467e963dc",
-        "type": "ui_spacer",
-        "z": "a781340859317bca",
-        "name": "spacer",
+        "id": "7fdc3ec4f3cd0c02",
+        "type": "ui_template",
+        "z": "c72758672bdb4a75",
         "group": "dashboard_group",
-        "order": 8,
-        "width": 9,
-        "height": 1
-    },
-    {
-        "id": "e1fedf0bfe2e49d5",
-        "type": "ui_spacer",
-        "z": "a781340859317bca",
-        "name": "spacer",
-        "group": "dashboard_group",
-        "order": 10,
-        "width": 9,
-        "height": 1
-    },
-    {
-        "id": "d31c89aef5eec915",
-        "type": "ui_spacer",
-        "z": "a781340859317bca",
-        "name": "spacer",
-        "group": "dashboard_group",
-        "order": 12,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "f0e30640266e0ef1",
-        "type": "ui_spacer",
-        "z": "a781340859317bca",
-        "name": "spacer",
-        "group": "dashboard_group",
-        "order": 14,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "01c6569cf0da316c",
-        "type": "ui_spacer",
-        "z": "a781340859317bca",
-        "name": "spacer",
-        "group": "dashboard_group",
-        "order": 15,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "02e6bdc3bda055ca",
-        "type": "ui_spacer",
-        "z": "a781340859317bca",
-        "name": "spacer",
-        "group": "dashboard_group",
-        "order": 16,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "879bacb7596ee51c",
-        "type": "ui_spacer",
-        "z": "a781340859317bca",
-        "name": "spacer",
-        "group": "dashboard_group",
-        "order": 18,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "267ce6b6878ec045",
-        "type": "mqtt-broker",
-        "name": "",
-        "broker": "test.mosquitto.org",
-        "port": 1883,
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": 4,
-        "keepalive": 60,
-        "cleansession": true,
-        "autoUnsubscribe": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthRetain": "false",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closeRetain": "false",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willRetain": "false",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
-    },
-    {
-        "id": "3c17da2ef19d8cad",
-        "type": "sqlitedb",
-        "db": "C:\\Users\\MyBook Hype AMD\\.node-red\\data\\sensor_data.db",
-        "mode": "RWC"
-    },
-    {
-        "id": "dashboard_group",
-        "type": "ui_group",
-        "name": "Dashboard",
-        "tab": "dashboard_tab",
+        "name": "Water Torrent (Node 1)",
         "order": 1,
-        "disp": false,
         "width": 28,
-        "collapse": false,
-        "className": ""
+        "height": 1,
+        "format": "<md-button class=\"md-raised md-primary\" ng-click=\"downloadCsv()\"\n    style=\"width: 1490px; height: 90px; color: white; background-color: #4CAF50; font-size: 14px; font-weight: bold; text-transform: uppercase; border-radius: 4px;\">\n    <i style=\"margin-right: 6px;\"></i> Water Torrent (Node 1)\n</md-button>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 200,
+        "y": 420,
+        "wires": [
+            []
+        ]
     },
     {
-        "id": "1ebf21c9ee91ee53",
-        "type": "telegram bot",
-        "botname": "water_torrent_bot",
-        "usernames": "watertorrent_bot",
-        "chatids": "5331421257",
-        "baseapiurl": "",
-        "testenvironment": false,
-        "updatemode": "polling",
-        "pollinterval": 300,
-        "usesocks": false,
-        "sockshost": "",
-        "socksprotocol": "socks5",
-        "socksport": 6667,
-        "socksusername": "anonymous",
-        "sockspassword": "",
-        "bothost": "",
-        "botpath": "",
-        "localbothost": "0.0.0.0",
-        "localbotport": 8443,
-        "publicbotport": 8443,
-        "privatekey": "",
-        "certificate": "",
-        "useselfsignedcertificate": false,
-        "sslterminated": false,
-        "verboselogging": false
+        "id": "d215c12cd34dd5a3",
+        "type": "mqtt in",
+        "z": "624ba602b36f01b4",
+        "name": "MQTT Sensor Data",
+        "topic": "water_torrent/sensorData_2",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "267ce6b6878ec045",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 310,
+        "y": 560,
+        "wires": [
+            [
+                "3b1915794d36cf5b",
+                "69d2b667dc4ab0f4",
+                "7287c7692cb78ffe"
+            ]
+        ]
     },
     {
-        "id": "dashboard_tab",
-        "type": "ui_tab",
-        "name": "Water Torrent",
-        "icon": "Dashboard",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
+        "id": "3b1915794d36cf5b",
+        "type": "function",
+        "z": "624ba602b36f01b4",
+        "name": "Parse sensor JSON",
+        "func": "function formatTime(ts) {\n    var d = new Date(ts * 1000);\n    return d.getFullYear() + '-' +\n        String(d.getMonth() + 1).padStart(2, '0') + '-' +\n        String(d.getDate()).padStart(2, '0') + ' ' +\n        String(d.getHours()).padStart(2, '0') + ':' +\n        String(d.getMinutes()).padStart(2, '0') + ':' +\n        String(d.getSeconds()).padStart(2, '0');\n}\n\n// Ambil data dari payload\nvar ka = msg.payload.ketinggian_air || 0;\nvar va = msg.payload.volume_air || 0;\nvar sp = msg.payload.status_pompa || 0;\nvar sk = msg.payload.status_ketinggia_air || \"UNKNOWN\";\nvar sv = msg.payload.status_volume_air || \"UNKNOWN\";\nvar sl = msg.payload.status_laju_air || \"UNKNOWN\";\nvar time = formatTime(msg.payload.timestamp);\n\n// Buat objek pesan untuk setiap output\nvar msgKa = { payload: ka, time: time };\nvar msgVa = { payload: va, time: time };\nvar msgSp = { payload: sp, time: time };\nvar msgSk = { payload: sk, time: time };\nvar msgSv = { payload: sv, time: time };\nvar msgSl = { payload: sl, time: time };\n\n// Return array dengan 6 pesan, urutan sesuai output node\nreturn [msgKa, msgVa, msgSp, msgSk, msgSv, msgSl];\n",
+        "outputs": 6,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 360,
+        "wires": [
+            [
+                "6b6a78f5fb09e1ab"
+            ],
+            [
+                "50a33ffa32e74d9d",
+                "dc864fe2f681a1ae"
+            ],
+            [
+                "dd7802155f8cb7c6",
+                "74ec65235d6601d7"
+            ],
+            [
+                "4845eb7f024755ae"
+            ],
+            [
+                "5ea6397a81609909"
+            ],
+            [
+                "a97c309949df66ef"
+            ]
+        ]
+    },
+    {
+        "id": "69d2b667dc4ab0f4",
+        "type": "function",
+        "z": "624ba602b36f01b4",
+        "name": "Prepare SQLite Insert",
+        "func": "function formatCustomDateTime(ts) {\n    try {\n        // Buat objek Date\n        let dateObj;\n        \n        // Handle berbagai kemungkinan input timestamp\n        if (ts === undefined || ts === null) {\n            dateObj = new Date(); // Waktu sekarang jika tidak ada input\n        } else if (typeof ts === 'number') {\n            // Anggap sebagai Unix timestamp (detik)\n            dateObj = new Date(ts * 1000);\n        } else if (typeof ts === 'string') {\n            // Handle string timestamp\n            if (ts.includes('T')) {\n                // Format ISO (e.g., \"2025-06-05T09:12:39Z\")\n                dateObj = new Date(ts);\n            } else if (/^\\d+$/.test(ts)) {\n                // String angka (Unix timestamp dalam string)\n                dateObj = new Date(parseInt(ts) * 1000);\n            } else if (/^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$/.test(ts)) {\n                // Jika sudah dalam format yang benar, langsung return\n                return ts;\n            } else {\n                // Coba parse format lain\n                dateObj = new Date(ts);\n            }\n        } else {\n            // Fallback ke waktu sekarang\n            dateObj = new Date();\n        }\n\n        // Validasi Date object\n        if (isNaN(dateObj.getTime())) {\n            throw new Error(\"Invalid date object\");\n        }\n\n        // Format sesuai permintaan: \"YYYY-MM-DD HH:MM:SS\"\n        const formatted = dateObj.getFullYear() + '-' +\n            String(dateObj.getMonth() + 1).padStart(2, '0') + '-' +\n            String(dateObj.getDate()).padStart(2, '0') + ' ' +\n            String(dateObj.getHours()).padStart(2, '0') + ':' +\n            String(dateObj.getMinutes()).padStart(2, '0') + ':' +\n            String(dateObj.getSeconds()).padStart(2, '0');\n\n        // Validasi format output\n        if (!/^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$/.test(formatted)) {\n            throw new Error(\"Formatting failed\");\n        }\n\n        return formatted;\n    } catch (e) {\n        node.error(\"Error in formatCustomDateTime: \" + e.toString());\n        // Fallback ke waktu sekarang dengan format yang benar\n        const now = new Date();\n        return now.getFullYear() + '-' +\n            String(now.getMonth() + 1).padStart(2, '0') + '-' +\n            String(now.getDate()).padStart(2, '0') + ' ' +\n            String(now.getHours()).padStart(2, '0') + ':' +\n            String(now.getMinutes()).padStart(2, '0') + ':' +\n            String(now.getSeconds()).padStart(2, '0');\n    }\n}\n\n// Ambil data dari payload dengan default value\nvar ka = (msg.payload.ketinggian_air !== undefined) ? msg.payload.ketinggian_air : 0;\nvar va = (msg.payload.volume_air !== undefined) ? msg.payload.volume_air : 0;\nvar sp = (msg.payload.status_pompa !== undefined) ? String(msg.payload.status_pompa) : \"0\";\n\n// Format waktu dengan penanganan error\nvar customTime;\ntry {\n    customTime = formatCustomDateTime(msg.payload.timestamp);\n} catch (e) {\n    node.error(\"Failed to format time, using current time. Error: \" + e);\n    customTime = formatCustomDateTime(); // Waktu sekarang\n}\n\n// Pastikan tidak ada nilai undefined/null\nvar values = [\n    customTime !== null ? customTime : formatCustomDateTime(),\n    ka !== null ? ka : 0,\n    va !== null ? va : 0,\n    sp !== null ? sp : \"0\"\n];\n\n// Siapkan query SQL\nmsg.topic = 'INSERT INTO data_air_2 (time, tinggi_air, volume_air, status_pompa) VALUES (?, ?, ?, ?)';\nmsg.payload = values;\n\n// Final validation\nif (values.some(v => v === null || v === undefined)) {\n    node.error(\"NULL value detected in query parameters!\");\n    node.error(\"Values: \" + JSON.stringify(values));\n} else {\n    node.log(\"Data ready for insertion\");\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 620,
+        "wires": [
+            [
+                "a1ba013e7c31a4e3"
+            ]
+        ]
+    },
+    {
+        "id": "3413a50e87c5ccb8",
+        "type": "sqlite",
+        "z": "624ba602b36f01b4",
+        "mydb": "3c17da2ef19d8cad",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "Store Sensor Data",
+        "x": 1250,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b6a78f5fb09e1ab",
+        "type": "ui_gauge",
+        "z": "624ba602b36f01b4",
+        "name": "Tinggi Air 2 (cm)",
+        "group": "dashboard_group",
+        "order": 24,
+        "width": 9,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Tinggi Air (cm)",
+        "label": "cm",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 50,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": 20,
+        "seg2": 35,
+        "diff": false,
+        "className": "",
+        "x": 800,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "50a33ffa32e74d9d",
+        "type": "ui_gauge",
+        "z": "624ba602b36f01b4",
+        "name": "Volume Air 2 (m³/hari)",
+        "group": "dashboard_group",
+        "order": 25,
+        "width": 9,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Volume Air (L/hari)",
+        "label": "Liter",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 100,
+        "colors": [
+            "#0000ff",
+            "#0099ff",
+            "#33ccff"
+        ],
+        "seg1": 30,
+        "seg2": 60,
+        "diff": false,
+        "className": "",
+        "x": 920,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "dd7802155f8cb7c6",
+        "type": "ui_text",
+        "z": "624ba602b36f01b4",
+        "group": "dashboard_group",
+        "order": 34,
+        "width": 9,
+        "height": 1,
+        "name": "Status Pompa 2",
+        "label": "Status Pompa",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": true,
+        "font": "Arial,Arial,Helvetica,sans-serif",
+        "fontSize": "20",
+        "color": "#000000",
+        "x": 940,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a1ba013e7c31a4e3",
+        "type": "function",
+        "z": "624ba602b36f01b4",
+        "name": "Validate Query",
+        "func": "// Fungsi ini harus ditempatkan SEBELUM node SQLite\ntry {\n    // Pastikan tidak ada nilai null\n    const cleanPayload = msg.payload.map(item =>\n        item === null ? (item === undefined ? \"\" : item) : item\n    );\n\n    // Konversi ke prepared statement format\n    msg.topic = `INSERT INTO data_air_2 (time, tinggi_air, volume_air, status_pompa) \n                VALUES ('${cleanPayload[0]}', ${cleanPayload[1]}, ${cleanPayload[2]}, '${cleanPayload[3]}')`;\n\n    // Alternatif jika ingin tetap menggunakan prepared statement:\n    // msg.topic = \"INSERT INTO data_air_2 VALUES (NULL, ?, ?, ?, ?)\";\n    // msg.payload = cleanPayload;\n\n    node.warn(\"Final SQL Query: \" + msg.topic);\n    return msg;\n} catch (e) {\n    node.error(\"Error preparing SQL: \" + e);\n    return null;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 620,
+        "wires": [
+            [
+                "3413a50e87c5ccb8"
+            ]
+        ]
+    },
+    {
+        "id": "dc864fe2f681a1ae",
+        "type": "ui_chart",
+        "z": "624ba602b36f01b4",
+        "name": "Grafik Volume Air 2 (L/hari)",
+        "group": "dashboard_group",
+        "order": 30,
+        "width": 9,
+        "height": 7,
+        "label": "Grafik Volume Air (L/hari)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 880,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "74ec65235d6601d7",
+        "type": "ui_template",
+        "z": "624ba602b36f01b4",
+        "group": "dashboard_group",
+        "name": "LED Status Pompa 2",
+        "order": 36,
+        "width": 5,
+        "height": 2,
+        "format": "<div style=\"text-align:center\">\n  <div style=\"width:80px;height:80px;border-radius:50%;margin:auto\"\n    ng-style=\"{'background-color': msg.payload === 'ON' ? 'green' : 'red'}\">\n  </div>\n  <p style=\"margin:4px 0 0 0;font-weight:bold\"></p>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1000,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "45b4a41b984b414e",
+        "type": "ui_button",
+        "z": "624ba602b36f01b4",
+        "name": "Show Log Data 2",
+        "group": "dashboard_group",
+        "order": 41,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Refresh Data",
+        "tooltip": "",
+        "color": "#ffffff",
+        "bgcolor": "#007acc",
+        "className": "",
+        "icon": "fa-table",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 310,
+        "y": 860,
+        "wires": [
+            [
+                "7d4022916f1acd23"
+            ]
+        ]
+    },
+    {
+        "id": "7d4022916f1acd23",
+        "type": "function",
+        "z": "624ba602b36f01b4",
+        "name": "Fetch Log Data",
+        "func": "msg.topic = \"SELECT time, tinggi_air, volume_air, status_pompa FROM data_air_2 ORDER BY time DESC\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 860,
+        "wires": [
+            [
+                "eef41525673f7e47"
+            ]
+        ]
+    },
+    {
+        "id": "eef41525673f7e47",
+        "type": "sqlite",
+        "z": "624ba602b36f01b4",
+        "mydb": "3c17da2ef19d8cad",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "Query Log Data",
+        "x": 700,
+        "y": 860,
+        "wires": [
+            [
+                "f92165b6c4e7bb13"
+            ]
+        ]
+    },
+    {
+        "id": "f92165b6c4e7bb13",
+        "type": "function",
+        "z": "624ba602b36f01b4",
+        "name": "Format Log Table",
+        "func": "let rows = msg.payload;\n\nlet html = `\n<table class=\"custom-table\">\n  <thead>\n    <tr>\n      <th>Time</th>\n      <th>Tinggi Air (cm)</th>\n      <th>Volume Air (L/hari)</th>\n      <th>Status Pompa</th>\n    </tr>\n  </thead>\n  <tbody>\n`;\n\nfor (let i = 0; i < rows.length; i++) {\n  html += `\n    <tr>\n      <td>${rows[i].time}</td>\n      <td>${rows[i].tinggi_air}</td>\n      <td>${rows[i].volume_air}</td>\n      <td>${rows[i].status_pompa}</td>\n    </tr>\n    `;\n}\n\nhtml += `\n  </tbody>\n</table>\n`;\n\nmsg.payload = html;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 860,
+        "wires": [
+            [
+                "085ec6425636ce92"
+            ]
+        ]
+    },
+    {
+        "id": "085ec6425636ce92",
+        "type": "ui_template",
+        "z": "624ba602b36f01b4",
+        "group": "dashboard_group",
+        "name": "Log Data Table 2",
+        "order": 27,
+        "width": 10,
+        "height": 11,
+        "format": "<style>\n    table.custom-table {\n        width: 100%;\n        border-collapse: collapse;\n        font-size: 14px;\n        text-align: center;\n    }\n\n    table.custom-table th,\n    table.custom-table td {\n        border: 1px solid #ccc;\n        padding: 8px;\n        text-align: center;\n        vertical-align: middle;\n    }\n\n    table.custom-table th {\n        background-color: #007acc;\n        color: white;\n    }\n</style>\n\n<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1110,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9db584b984d90011",
+        "type": "http in",
+        "z": "624ba602b36f01b4",
+        "name": "HTTP In Download CSV",
+        "url": "/download-csv",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 330,
+        "y": 1100,
+        "wires": [
+            [
+                "759010ea9e40bebb"
+            ]
+        ]
+    },
+    {
+        "id": "759010ea9e40bebb",
+        "type": "function",
+        "z": "624ba602b36f01b4",
+        "name": "Generate CSV & Respond",
+        "func": "// Query SQL string\nconst sql = `SELECT time, tinggi_air, volume_air, status_pompa FROM data_air_2 ORDER BY time DESC`;\n\n// Simpan SQL di msg untuk sqlite node\nmsg.topic = sql;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 1020,
+        "wires": [
+            [
+                "1e1db4314f9ef166"
+            ]
+        ]
+    },
+    {
+        "id": "1e1db4314f9ef166",
+        "type": "sqlite",
+        "z": "624ba602b36f01b4",
+        "mydb": "3c17da2ef19d8cad",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "Query Log Data for Download",
+        "x": 950,
+        "y": 1100,
+        "wires": [
+            [
+                "5883ce9c51f93edf"
+            ]
+        ]
+    },
+    {
+        "id": "d7db4135b42d339c",
+        "type": "http response",
+        "z": "624ba602b36f01b4",
+        "name": "HTTP Response CSV",
+        "statusCode": "",
+        "headers": {},
+        "x": 1460,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "5883ce9c51f93edf",
+        "type": "function",
+        "z": "624ba602b36f01b4",
+        "name": "Create CSV & Send Response",
+        "func": "// Prepare CSV content\nconst rows = msg.payload;\n\n// Header\nlet csv = 'Time,Tinggi Air (m),Volume Air (m³/hari),Status Pompa\\n';\n\n// Rows\nrows.forEach(row => {\n    csv += `${row.time},${row.tinggi_air},${row.volume_air},${row.status_pompa}\\n`;\n});\n\n// Buat nama file dinamis berdasarkan tanggal dan waktu (YYYYMMDD_HHMM)\nconst date = new Date();\nconst pad = n => (n < 10 ? '0' + n : n);\nconst filename = `download_water_torrents_2_${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}_${pad(date.getHours())}${pad(date.getMinutes())}.csv`;\n\n// Set header agar file terdownload dengan nama yang benar\nmsg.headers = {\n    'Content-Type': 'text/csv',\n    'Content-Disposition': `attachment; filename=\"${filename}\"`\n};\n\n// Set payload\nmsg.payload = csv;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1210,
+        "y": 1020,
+        "wires": [
+            [
+                "d7db4135b42d339c"
+            ]
+        ]
+    },
+    {
+        "id": "4b221b3766bd3398",
+        "type": "ui_template",
+        "z": "624ba602b36f01b4",
+        "group": "dashboard_group",
+        "name": "Download CSV File Button 2",
+        "order": 43,
+        "width": 4,
+        "height": 1,
+        "format": "<md-button class=\"md-raised md-primary\" ng-click=\"downloadCsv()\"\n    style=\"width: 180px; height: 90px; color: white; background-color: #4CAF50; font-size: 14px; font-weight: bold; text-transform: uppercase; border-radius: 4px;\">\n    <i class=\"fa fa-download\" style=\"margin-right: 6px;\"></i> DOWNLOAD DATA\n</md-button>\n\n<script>\n    (function(scope){\n        scope.downloadCsv = function() {\n            window.open('/download-csv', '_blank');\n        };\n    })(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 320,
+        "y": 1020,
+        "wires": [
+            [
+                "759010ea9e40bebb"
+            ]
+        ]
+    },
+    {
+        "id": "a55880b589ad1d57",
+        "type": "telegram sender",
+        "z": "624ba602b36f01b4",
+        "name": "",
+        "bot": "1ebf21c9ee91ee53",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1110,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7287c7692cb78ffe",
+        "type": "json",
+        "z": "624ba602b36f01b4",
+        "name": "Payload JSON",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 560,
+        "y": 700,
+        "wires": [
+            [
+                "7d24faba25ce3220",
+                "7a7f2e7a9d9a126c"
+            ]
+        ]
+    },
+    {
+        "id": "7d24faba25ce3220",
+        "type": "function",
+        "z": "624ba602b36f01b4",
+        "name": "Notif Telegram",
+        "func": "function formatTime(ts) {\n    var d = new Date(ts * 1000);\n    return d.getFullYear() + '-' +\n        String(d.getMonth() + 1).padStart(2, '0') + '-' +\n        String(d.getDate()).padStart(2, '0') + ' ' +\n        String(d.getHours()).padStart(2, '0') + ':' +\n        String(d.getMinutes()).padStart(2, '0') + ':' +\n        String(d.getSeconds()).padStart(2, '0');\n}\n\n// Ambil data dari payload existing (yang selama ini dipakai)\nvar ka = msg.payload.ketinggian_air || 0;\nvar va = msg.payload.volume_air || 0;\nvar sp = (msg.payload.status_pompa || \"\").toUpperCase();\nvar time = formatTime(msg.payload.timestamp || (Date.now() / 1000));\n\n// Ambil data parameter baru dari payload terbaru (bisa kosong jika tidak ada)\nvar statusKetinggian = msg.payload.status_ketinggia_air || \"-\";\nvar statusVolume = msg.payload.status_volume_air || \"-\";\nvar statusLaju = msg.payload.status_laju_air || \"-\";\n\n// Ambil status pompa terakhir dari context flow\nvar lastStatus = flow.get('lastPompaStatus');\n\n// Cek apakah status pompa berubah, baru kirim notifikasi\nif (lastStatus !== sp) {\n    flow.set('lastPompaStatus', sp);\n\n    var statusAir = sp === \"ON\" ? \"Habis\" : \"Penuh\";\n    var statusPompa = sp === \"ON\" ? \"AKTIF\" : \"MATI\";\n\n    // Format pesan notifikasi gabungkan semua data\n    var notifText = `🚨 Notifikasi (Water Torrent Node 2)\\n\\n` +\n        `Ketinggian Air : ${ka} CM\\n` +\n        `Volume Air : ${va} L\\n` +\n        `Status Pompa : ${statusPompa}\\n\\n` +\n        `Status Ketinggian Air : ${statusKetinggian}\\n` +\n        `Status Volume Air : ${statusVolume}\\n` +\n        `Status Laju Air : ${statusLaju}\\n\\n` +\n        `Waktu : ${time}`;\n\n    return {\n        payload: {\n            type: \"message\",\n            chatId: 5331421257,\n            content: notifText\n        }\n    };\n}\n\n// Jika status pompa tidak berubah, tidak kirim apa-apa\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 700,
+        "wires": [
+            [
+                "a55880b589ad1d57"
+            ]
+        ]
+    },
+    {
+        "id": "88eba5f1fa86cfd3",
+        "type": "telegram receiver",
+        "z": "624ba602b36f01b4",
+        "name": "",
+        "bot": "1ebf21c9ee91ee53",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 550,
+        "y": 780,
+        "wires": [
+            [
+                "7a7f2e7a9d9a126c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7a7f2e7a9d9a126c",
+        "type": "function",
+        "z": "624ba602b36f01b4",
+        "name": "Request Telegram",
+        "func": "function formatLine(label, value) {\n    return `\\`${label.padEnd(18, ' ')}: ${value}\\``;\n}\n\n// Cek apakah ini permintaan status dari Telegram\nif (msg.payload.type === \"message\" && msg.payload.content === \"/status_node2\") {\n    // Ambil data terakhir yang tersimpan di flow context (existing dan baru)\n    var ka = flow.get('lastKetinggianAir') || 0;\n    var va = flow.get('lastVolumeAir') || 0;\n    var sp = (flow.get('lastStatusPompa') || \"\").toUpperCase();\n\n    // Data status terbaru (tambahan)\n    var statusKetinggian = flow.get('lastStatusKetinggianAir') || \"-\";\n    var statusVolume = flow.get('lastStatusVolumeAir') || \"-\";\n    var statusLaju = flow.get('lastStatusLajuAir') || \"-\";\n\n    // Format status pompa\n    var statusPompa = sp === \"ON\" ? \"AKTIF\" : \"MATI\";\n\nvar content =\n    \"💧 Water Torrent Node 2\\n\\n\" +\n    \"Ketinggian Air : \" + ka + \" CM\\n\" +\n    \"Volume Air/Hari : \" + va + \" L\\n\" +\n    \"Status Pompa : \" + statusPompa + \"\\n\\n\" +\n    \"Status Ketinggian Air : \" + statusKetinggian + \"\\n\" +\n    \"Status Volume Air : \" + statusVolume + \"\\n\" +\n    \"Status Laju Air : \" + statusLaju;\n\n\n    return {\n        payload: {\n            type: \"message\",\n            chatId: msg.payload.chatId,\n            messageId: msg.payload.messageId,\n            content: content\n        }\n    };\n}\n\n// Jika bukan permintaan status, simpan saja data terbaru (existing dan tambahan)\nif (msg.payload.ketinggian_air !== undefined) {\n    flow.set('lastKetinggianAir', msg.payload.ketinggian_air);\n}\nif (msg.payload.volume_air !== undefined) {\n    flow.set('lastVolumeAir', msg.payload.volume_air);\n}\nif (msg.payload.status_pompa !== undefined) {\n    flow.set('lastStatusPompa', msg.payload.status_pompa.toUpperCase());\n}\n\n// Simpan juga data status terbaru jika ada\nif (msg.payload.status_ketinggia_air !== undefined) {\n    flow.set('lastStatusKetinggianAir', msg.payload.status_ketinggia_air);\n}\nif (msg.payload.status_volume_air !== undefined) {\n    flow.set('lastStatusVolumeAir', msg.payload.status_volume_air);\n}\nif (msg.payload.status_laju_air !== undefined) {\n    flow.set('lastStatusLajuAir', msg.payload.status_laju_air);\n}\n\n// Tidak mengembalikan apa-apa jika bukan permintaan status\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 780,
+        "wires": [
+            [
+                "a55880b589ad1d57"
+            ]
+        ]
+    },
+    {
+        "id": "4845eb7f024755ae",
+        "type": "ui_text",
+        "z": "624ba602b36f01b4",
+        "group": "dashboard_group",
+        "order": 28,
+        "width": 5,
+        "height": 1,
+        "name": "Status Ketinggian Air 2",
+        "label": "Status Ketinggian Air",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": true,
+        "font": "Arial,Arial,Helvetica,sans-serif",
+        "fontSize": "20",
+        "color": "#000000",
+        "x": 960,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "5ea6397a81609909",
+        "type": "ui_text",
+        "z": "624ba602b36f01b4",
+        "group": "dashboard_group",
+        "order": 29,
+        "width": 4,
+        "height": 1,
+        "name": "Status Volume Air 2",
+        "label": "Status Volume Air",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": true,
+        "font": "Arial,Arial,Helvetica,sans-serif",
+        "fontSize": "20",
+        "color": "#000000",
+        "x": 910,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "a97c309949df66ef",
+        "type": "ui_text",
+        "z": "624ba602b36f01b4",
+        "group": "dashboard_group",
+        "order": 32,
+        "width": 9,
+        "height": 1,
+        "name": "Status Laju Air 2",
+        "label": "Status Laju Air",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": true,
+        "font": "Arial,Arial,Helvetica,sans-serif",
+        "fontSize": "20",
+        "color": "#000000",
+        "x": 840,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "8a72f0d475d12a82",
+        "type": "ui_template",
+        "z": "624ba602b36f01b4",
+        "group": "dashboard_group",
+        "name": "Water Torrent (Node 2)",
+        "order": 23,
+        "width": 28,
+        "height": 1,
+        "format": "<md-button class=\"md-raised md-primary\" ng-click=\"downloadCsv()\"\n    style=\"width: 1490px; height: 90px; color: white; background-color: #4CAF50; font-size: 14px; font-weight: bold; text-transform: uppercase; border-radius: 4px;\">\n    <i style=\"margin-right: 6px;\"></i> Water Torrent (Node 2)\n</md-button>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 280,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "23e2a35f93bbbb1c",
+        "type": "ui_text",
+        "z": "624ba602b36f01b4",
+        "group": "dashboard_group",
+        "order": 26,
+        "width": 10,
+        "height": 1,
+        "name": "Table Title 2",
+        "label": "<b>Tabel Log Data Sensor</b>",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 280.8888854980469,
+        "y": 435.4444274902344,
+        "wires": []
     }
 ]
