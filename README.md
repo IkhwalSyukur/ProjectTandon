@@ -34,6 +34,11 @@
 2. node-red-contrib-telegrambot
 3. node-red-dashboard
 
+## Command Telegram
+- "/start" command for start telegram bot
+- "/status_node1" and "/status_node2" for get information node
+- Alert (Node will be automatic to send information to telegram bot)
+ 
 ## Payload MQTT
 Change sensor_id with actual node number. i.e: "1" / "2".
 
