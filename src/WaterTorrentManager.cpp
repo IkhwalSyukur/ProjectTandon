@@ -1,16 +1,50 @@
+#include <Arduino.h>
 #include "WaterTorrentManager.h"
 #include "esp_log.h"
 #include <string>
 
+// WaterTorrentManager.cpp
+#include "WaterTorrentManager.h"
+
+const char* MQTT_SERVER = "test.mosquitto.org"; // Public MQTT broker
+const int MQTT_PORT = 1883;
+const char* MQTT_ID = "WaterTorrentManager";
+const char* MQTT_PUBLISH_TOPIC = "water_torrent_armisuari/sensorData";
+const char* MQTT_SUBSCRIBE_TOPIC = "water_torrent_armisuari/control";
+
 static const char *TAG = "WaterTorrentManager";
+WaterTorrentManager* WaterTorrentManager::instance = nullptr;
 
+WaterTorrentManager::WaterTorrentManager(std::unique_ptr<WifiAdapterInterface> wifiAdapter)
+    : _wifiAdapter(std::move(wifiAdapter))
+{
+    if (_wifiAdapter == nullptr)
+    {
+        ESP_LOGE(TAG, "Failed to initialize WaterTorrentManager: Null pointer provided.");
+    }
 
-// WaterTorrentManager::WaterTorrentManager(WaterLevelSensorInterface &waterLevel, WaterServoInterface &waterServo, WaterFlowSensorInterface &waterFlow, WaterPumpInterface &waterPump, WaterTimeInterface &waterTime)
-//     : _waterLevel(waterLevel), _waterServo(waterServo), _waterFlow(waterFlow), _waterPump(waterPump), _waterTime(waterTime) {}
-
+    instance = this;
+}
 
 bool WaterTorrentManager::begin()
 {
+    if (!_wifiAdapter->init())
+    {
+        ESP_LOGE(TAG, "Failed to initialize WiFi Adapter.");
+        return false;
+    }
+
+    ESP_LOGI(TAG, "MAC Address: %s", _wifiAdapter->getMacAddress().c_str());
+    
+    ESP_LOGI(TAG, "Available Networks:");
+    auto networks = _wifiAdapter->getAvailableNetworks();
+    for (const auto &network : networks)
+    {
+        ESP_LOGI(TAG, " - %s", network.c_str());
+    }
+
+    vTaskDelay(2000); // Allow time for WiFi to stabilize
+    if (!_wifiAdapter->isConnected())
     _waterLevel.begin();
     _waterFlow.begin();
     _waterPump.begin();
@@ -28,12 +62,36 @@ void WaterTorrentManager::readingWaterLevel()
     userData.waterLevel = waterLevel; //Mengisi ke struct
     if (waterLevel >= 0)
     {
-        ESP_LOGI(TAG, "Water Level: %.2f cm\n", waterLevel);
+        ESP_LOGE(TAG, "WiFi is not connected. Please check your network settings.");
+        return false;
     }
-    else
-    {
-        ESP_LOGW(TAG, "Water Level: No object detected");
-    }
+
+    // setup time from NTP
+    configTime(0, 0, "pool.ntp.org", "time.nist.gov");
+
+    mqttHandler.begin(
+        MQTT_SERVER,
+        MQTT_PORT
+    );
+
+    // Start periodic sending with our data preparation callback
+    mqttHandler.startSendTask(prepareSensorData);
+
+    // Send initial status
+    mqttHandler.sendString("{\"status\":\"online\"}");
+
+    return true;
+}
+
+void WaterTorrentManager::prepareSensorData(JsonDocument& doc) {
+    // Simulate sensor readings
+    float temperature = 25.0 + (random(0, 10) / 10.0);
+    float humidity = 40.0 + (random(0, 20) / 10.0);
+
+    doc["device_id"] = MQTT_ID + std::string("_") + instance->_wifiAdapter->getMacAddress();
+    doc["temperature"] = temperature;
+    doc["humidity"] = humidity;
+    doc["timestamp"] = time(nullptr); // Current time in seconds since epoch
 }
 
 float WaterTorrentManager::getWaterLevel()
@@ -136,14 +194,4 @@ int WaterTorrentManager::runFuzzy()
     {
         ESP_LOGW(TAG, "volused: No change in day, no volume used calculated");
     }
-
-    int fuzzyout =  _waterFuzzy.run(dist, volused);
-    ESP_LOGI(TAG, "Fuzzy Output: %d\n", fuzzyout);
-    
-    _waterServo.setAngle(fuzzyout); // Set the servo angle based on fuzzy output
-    return fuzzyout; // Return the fuzzy output value
 }
-
-
-
-

@@ -2,7 +2,9 @@
 #include <Arduino.h>
 #include "esp_log.h"
 #include <string>
+#include <memory>
 
+#include <driver/WifiAdapter_ESP.h>
 #ifndef UNIT_TEST // If UNIT_TEST is not defined, include the driver code
 #include <WaterTorrentManager.h>
 #include <driver/WaterLevel_JSN04T.h>
@@ -11,6 +13,14 @@
 #include <driver/WaterPump.h>
 #include <driver/WaterTimer_RTC.h>
 #include <driver/Water_Fuzzy.h>
+#include <driver/WifiAdapter_ESP.h>
+#include <WaterTorrentManager.h>
+
+
+std::unique_ptr<WifiAdapterESP> wifiAdapter = std::make_unique<WifiAdapterESP>();
+WaterTorrentManager waterTorrentManager(std::move(wifiAdapter));
+
+static const char *TAG = "main";
 
 // Driver setup ESP A
 WaterLevel_JSN04T waterLevel(33, 32); // Trig pin, Echo pin
@@ -38,6 +48,13 @@ void IRAM_ATTR pulseCounter()
 void setup()
 {
     Serial.begin(115200);
+    vTaskDelay(1000); // Give time for the serial monitor to open
+    ESP_LOGD(TAG, "Initializing WaterTorrentManager...");
+    if (!waterTorrentManager.begin())
+    {
+        ESP_LOGE(TAG, "Failed to initialize WaterTorrentManager.");
+        return;
+    }
     Serial.println("Water Torrent System Starting...");
     waterTorrent.begin();
 
@@ -53,11 +70,16 @@ void setup()
     xTaskCreate(fuzzyTask, "FuzzyTask", 2048, NULL, 1, NULL); 
     xTaskCreate(RelayTask, "RelayTask", 2048, NULL, 1, NULL);
 
+  
+  ESP_LOGI(TAG, "WaterTorrentManager setup complete.");
 }
 
 void loop()
 {
-    vTaskDelete(NULL);
+  waterTorrentManager.mqttLoop();
+  
+  // Add any additional loop code here
+  vTaskDelay(pdMS_TO_TICKS(100)); // Delay to prevent busy-waiting
 }
 
 void fuzzyTask(void *param)
