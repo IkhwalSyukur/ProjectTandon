@@ -21,5 +21,5 @@ float WaterLevel_JSN04T::getDistance()
         return -1.0; // Timeout or no detection
     }
 
-    return (duration / 2.0) / 29.1;
+    return (duration / 2.0) / 29.1 - 14;
 }
