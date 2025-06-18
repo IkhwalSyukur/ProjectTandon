@@ -1,6 +1,6 @@
 #pragma once
 #include <Arduino.h>
-#define LED_BUILTIN 2
+// #define LED_BUILTIN 2
 #define SENSOR  27
 
 
@@ -11,7 +11,8 @@ private:
     long previousMillis = 0;
     int interval = 1000;
     boolean ledState = LOW;
-    float calibrationFactor = 4.5;
+    // float calibrationFactor = 10; //tandon B
+    float calibrationFactor = 8; //tandon A
     volatile uint32_t pulseCount;
     byte pulse1Sec = 0;
     float flowRate;
@@ -27,9 +28,7 @@ public:
     }
 
     void begin(){
-        Serial.begin(115200);
-
-        pinMode(LED_BUILTIN, OUTPUT);
+        // pinMode(LED_BUILTIN, OUTPUT);
         pinMode(SENSOR, INPUT_PULLUP);
 
         pulseCount = 0;
@@ -57,7 +56,7 @@ public:
             totalMilliLitres += flowMilliLitres;
         }
 
-        return flowMilliLitres;
+        return totalMilliLitres / 1000.0; // Return total flow in liters
     }
 
 
