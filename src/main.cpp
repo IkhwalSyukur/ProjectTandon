@@ -1,6 +1,7 @@
 // #define UNIT_TEST // Comment this line to run the driver code
 #include <Arduino.h>
 #include "esp_log.h"
+#include <string>
 
 #ifndef UNIT_TEST // If UNIT_TEST is not defined, include the driver code
 #include <WaterTorrentManager.h>
@@ -27,7 +28,7 @@ WaterFuzzy waterfuzzy;
 // WaterTimer_RTC timerWater; // RTC object
 // WaterFuzzy waterfuzzy;
 
-WaterTorrentManager waterTorrent(waterLevel, waterServo, waterFlow, waterPump, timerWater,waterfuzzy); // WaterTorrentManager object
+WaterTorrentManager waterTorrent(waterLevel, waterFlow, waterPump,waterfuzzy, waterServo, timerWater); // WaterTorrentManager object
 
 void IRAM_ATTR pulseCounter()
 {
@@ -37,9 +38,10 @@ void IRAM_ATTR pulseCounter()
 void setup()
 {
     Serial.begin(115200);
+    Serial.println("Water Torrent System Starting...");
     waterTorrent.begin();
 
-    attachInterrupt(digitalPinToInterrupt(27), pulseCounter, FALLING); // Flow interupt
+    attachInterrupt(digitalPinToInterrupt(27), pulseCounter, FALLING); // Flow interupt Storage A and B
 
     void monitoringTask(void *param);
     void fuzzyTask(void *param);
@@ -51,29 +53,30 @@ void setup()
     xTaskCreate(fuzzyTask, "FuzzyTask", 2048, NULL, 1, NULL); 
     xTaskCreate(RelayTask, "RelayTask", 2048, NULL, 1, NULL);
 
-
 }
 
 void loop()
 {
-    
+    vTaskDelete(NULL);
 }
 
 void fuzzyTask(void *param)
 {
     while (true)
     {
-        waterTorrent.runFuzzy(); // Run fuzzy logic control
-        delay(1000); // Delay for 1 second
+        int fuzzy_data = waterTorrent.runFuzzy(); // Run fuzzy logic control
+        Serial.printf("Fuzzy Output: %d\n", fuzzy_data); // Print fuzzy output to Serial Monitor
+        vTaskDelay(500); // Delay for 1 second
     }
 }
 
 void RelayTask(void *param)
+
 {
-    while (true)
-    {
-        waterTorrent.RelayDriver(); // Control pump based on water level
-        delay(1000); // Delay for 1 second
+    while (true) {
+        std::string pumpstatus = waterTorrent.RelayDriver(); // Control pump based on water level
+        Serial.println(pumpstatus.c_str()); // Print pump status to Serial Monitor
+        vTaskDelay(500); // Delay for 1 second
     }
 }
 
@@ -94,7 +97,7 @@ void monitoringTask(void *param)
 
         // waterTorrent.setAngle(90); // Set servo angle to 90 degrees
 
-        delay(1000); // Delay for 1 second
+        delay(500); // Delay for 1 second
     }
 }
 
@@ -126,7 +129,7 @@ void monitoringTask(void *param)
 // {
 
 //     float thisflow = flowTest.getFlow(); 
-//     Serial.printf("Flow rate: %.2f L/min\n", thisflow);
+//     Serial.printf("Total Liter: %.2f L \n", thisflow);
 // }
 
 #endif
