@@ -23,4 +23,5 @@ class WaterFlow_YFBX : public WaterFlowSensorInterface
         bool begin();
         uint32_t getPulseCount();
         float getFlowRate();
+        int getLiters();
 };
