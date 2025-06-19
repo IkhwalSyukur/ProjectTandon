@@ -4,5 +4,5 @@ class WaterFuzzyInterface
 {
     public:
         virtual bool begin() = 0;
-        virtual int run(int dist, float volused);
+        virtual int runFuzzy(int dist, float volused);
 };
