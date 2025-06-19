@@ -18,7 +18,6 @@
 
 
 std::unique_ptr<WifiAdapterESP> wifiAdapter = std::make_unique<WifiAdapterESP>();
-WaterTorrentManager waterTorrentManager(std::move(wifiAdapter));
 
 static const char *TAG = "main";
 
@@ -38,7 +37,7 @@ WaterFuzzy waterfuzzy;
 // WaterTimer_RTC timerWater; // RTC object
 // WaterFuzzy waterfuzzy;
 
-WaterTorrentManager waterTorrent(waterLevel, waterFlow, waterPump,waterfuzzy, waterServo, timerWater); // WaterTorrentManager object
+WaterTorrentManager waterTorrent(std::move(wifiAdapter), waterLevel, waterFlow, waterPump,waterfuzzy, waterServo, timerWater); // WaterTorrentManager object
 
 void IRAM_ATTR pulseCounter()
 {
@@ -50,25 +49,27 @@ void setup()
     Serial.begin(115200);
     vTaskDelay(1000); // Give time for the serial monitor to open
     ESP_LOGD(TAG, "Initializing WaterTorrentManager...");
-    if (!waterTorrentManager.begin())
+    if (!waterTorrent.begin())
     {
         ESP_LOGE(TAG, "Failed to initialize WaterTorrentManager.");
         return;
     }
     Serial.println("Water Torrent System Starting...");
-    waterTorrent.begin();
+    // waterTorrent.begin();
 
     attachInterrupt(digitalPinToInterrupt(27), pulseCounter, FALLING); // Flow interupt Storage A and B
 
     void monitoringTask(void *param);
     void fuzzyTask(void *param);
     void RelayTask(void *param);
+    void wifiTask(void *param);
 
     
     
     xTaskCreate(monitoringTask, "MonitoringTask", 2048, NULL, 1, NULL);
     xTaskCreate(fuzzyTask, "FuzzyTask", 2048, NULL, 1, NULL); 
     xTaskCreate(RelayTask, "RelayTask", 2048, NULL, 1, NULL);
+    xTaskCreatePinnedToCore(wifiTask, "WifiTask", 2048, NULL, 10, NULL, 1);
 
   
   ESP_LOGI(TAG, "WaterTorrentManager setup complete.");
@@ -76,10 +77,16 @@ void setup()
 
 void loop()
 {
-  waterTorrentManager.mqttLoop();
-  
-  // Add any additional loop code here
-  vTaskDelay(pdMS_TO_TICKS(100)); // Delay to prevent busy-waiting
+    vTaskDelete(NULL); // Delete the loop task to prevent it from running
+}
+
+void wifiTask(void *param)
+{
+    while (true)
+    {
+        waterTorrent.mqttLoop(); // Handle MQTT loop
+        vTaskDelay(pdMS_TO_TICKS(15000)); // Delay for 1 second
+    }
 }
 
 void fuzzyTask(void *param)
@@ -106,16 +113,16 @@ void monitoringTask(void *param)
 {
     while (true)
     {
-        waterTorrent.readingWaterLevel(); // Read water level
+        waterTorrent.getWaterLevel(); // Read water level
         waterTorrent.readingFlowRate();   // Read flow rate
 
         
 
         // Print data to Serial Monitor
         Serial.printf("Water Level: %.2f cm\n", waterTorrent.getWaterLevel());
-        Serial.printf("Flow Rate: %.2f L/min\n", waterTorrent.getFlowRate());
+        // Serial.printf("Flow Rate: %.2f L/min\n", waterTorrent.getFlowRate());
         Serial.printf("Liters per Day: %d L\n", waterTorrent.getLitersPerDay());
-        Serial.printf("Fuzzy Output: %.2f\n", waterTorrent.runFuzzy());
+        // Serial.printf("Fuzzy Output: %.2f\n", waterTorrent.runFuzzy());
 
         // waterTorrent.setAngle(90); // Set servo angle to 90 degrees
 
