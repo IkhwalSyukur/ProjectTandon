@@ -8,6 +8,6 @@ class WaterFuzzy : public WaterFuzzyInterface
     public:
 
         bool begin() override;
-        int run(int dist, float volused) override;
+        int runFuzzy(int dist, float volused) override;
 
 };

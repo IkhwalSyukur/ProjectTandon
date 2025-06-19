@@ -19,15 +19,17 @@ extern const char* MQTT_SUBSCRIBE_TOPIC;
 #include <interfaces/WaterPumpInterface.h>
 #include <interfaces/WaterTimeInterface.h>
 #include <interfaces/WaterFuzzyInterface.h>
+#include <interfaces/WaterLevelSensorInterface.h>
+#include <interfaces/WaterFlowSensorInterface.h>
 
 #include "WaterTorrentPubSource.h"
 
 class WaterTorrentManager
 {
     public:
-        WaterTorrentManager(std::unique_ptr<WifiAdapterInterface> wifiAdapter);
-        WaterTorrentManager(WaterLevelSensorInterface &waterLevel, WaterFlowSensorInterface &waterFlow, WaterPumpInterface &waterPump, WaterFuzzyInterface &waterFuzzy, WaterServoInterface &waterServo , WaterTimeInterface &waterTime)
-            : _waterLevel(waterLevel), _waterFlow(waterFlow), _waterPump(waterPump), _waterFuzzy(waterFuzzy), _waterServo(waterServo), _waterTime (waterTime) {};
+        // static WaterTorrentManager* instance;
+        WaterTorrentManager(std::unique_ptr<WifiAdapterInterface> &&wifiAdapter, WaterLevelSensorInterface &waterLevel, WaterFlowSensorInterface &waterFlow, WaterPumpInterface &waterPump, WaterFuzzyInterface &waterFuzzy, WaterServoInterface &waterServo , WaterTimeInterface &waterTime)
+            :_wifiAdapter(std::move(wifiAdapter)), _waterLevel(waterLevel), _waterFlow(waterFlow), _waterPump(waterPump), _waterFuzzy(waterFuzzy), _waterServo(waterServo), _waterTime(waterTime) {};
                 
         //Water Level
         bool begin();

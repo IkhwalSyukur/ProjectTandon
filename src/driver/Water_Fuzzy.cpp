@@ -109,7 +109,7 @@ bool WaterFuzzy::begin()
     return true;
 }
 
-int WaterFuzzy::run(int dist, float volused) 
+int WaterFuzzy::runFuzzy(int dist, float volused) 
 {
     // Set input values
     fuzzy->setInput(1, dist); // Flow rate as input 1
